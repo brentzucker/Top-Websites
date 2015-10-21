@@ -1,3 +1,5 @@
+/* General Styles */
+
 body {
   font: 10px sans-serif;
 }
@@ -9,6 +11,22 @@ body {
   shape-rendering: crispEdges;
 }
 
+/* Scatter Plot */
+
 .dot {
   stroke: #000;
+}
+
+/* Bar Chart */
+
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.barchart .x.axis path {
+  display: none;
 }

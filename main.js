@@ -1,0 +1,4 @@
+$(function() {
+	scatterPlot();
+	barChart();
+});
