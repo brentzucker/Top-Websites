@@ -17,6 +17,10 @@ body {
   stroke: #000;
 }
 
+.dot:hover {
+	cursor: pointer;
+}
+
 /* Bar Chart */
 
 .bar {
