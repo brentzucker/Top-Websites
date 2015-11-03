@@ -10,6 +10,9 @@ function scatterPlot() {
 	var y = d3.scale.linear()
 	    .range([height, 0]);
 
+	var r = d3.scale.linear()
+		.range([.5, 5]);
+
 	// fill color
 	var cValue = function(d) { return d.main_category; },
 		color = d3.scale.category20();
@@ -57,6 +60,7 @@ function scatterPlot() {
 
 	  x.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
 	  y.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
+	  r.domain(d3.extent(data, function(d) { return d.time_on_site; }));
 
 	  // x-axis
 	  svg.append("g")
@@ -87,7 +91,9 @@ function scatterPlot() {
 	      .data(data)
 	    .enter().append("circle")
 	      .attr("class", "dot")
-	      .attr("r", 3.5)
+	      .attr("r", function(d) {
+	      	return r(d.time_on_site);
+	      })
 	      .attr("cx", function(d) { return x(d.pageviews); })
 	      .attr("cy", function(d) { return y(d.unique_visitors); })
 	      .style("fill", function(d) { return color(cValue(d));})
