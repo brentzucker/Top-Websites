@@ -30,7 +30,3 @@ body {
 .bar:hover {
   fill: brown;
 }
-
-.barchart .x.axis path {
-  display: none;
-}
