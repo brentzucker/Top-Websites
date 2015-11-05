@@ -98,7 +98,7 @@ files.wordpress.com,Internet_Internet-Blogging_Platforms_and_Tools,218,11691101,
 homedepot.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Home_and_Garden,222,17597924,-29,265658330,352
 americanexpress.com,Finance_and_Economics_Finance_and_Economics-Banking,223,17090927,-28,230683546,290
 skype.com,Business_and_Industry_Business_and_Industry-Telecommunications,224,5060460,-20,46542424,282
-nih.gov,Government_Health_and_Healthcare_Government-National_Health_and_Healthcare-Products_and_Services,225,10856945,-16,96230255,238
+nih.gov,Government_Government-National_Health_and_Healthcare-Products_and_Services,225,10856945,-16,96230255,238
 secureserver.net,Internet_Internet-Email,226,2166679,-37,162270500,701
 ups.com,Business_and_Industry_Business_and_Industry-Transportation_and_Logistics,231,16838794,-19,136832728,188
 gfycat.com,Internet_Internet-Photos,233,6500071,-11,61453002,295
@@ -106,7 +106,7 @@ wix.com,Internet_Internet-Hosting,234,5142511,-8,41378451,255
 archive.org,Reference_Reference-Archives,236,4301159,-27,43438568,256
 steamcommunity.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,237,5970487,-33,96708970,253
 avg.com,Internet_Internet-Security,238,8549300,-32,105864063,117
-usps.com,Business_and_Industry_Government_Business_and_Industry-Transportation_and_Logistics_Government-National,239,18712260,-19,198207573,222
+usps.com,Business_and_Industry_Business_and_Industry-National,239,18712260,-19,198207573,222
 youradexchange.com,Internet_Internet,244,2321010,-46,78255409,87
 hclips.com,Society_Society-Adult,247,3085619,-13,21345874,339
 force.com,Business_and_Industry_Business_and_Industry-Business_Services,249,7193547,-19,174092109,212
@@ -142,7 +142,7 @@ abs-cbnnews.com,News_and_Media_News_and_Media-News,308,404705,-61,5804737,86
 accuweather.com,News_and_Media_News_and_Media-Weather,310,12405414,-29,160926758,193
 engadget.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Consumer_Information,312,8147977,-13,86328023,199
 likes.com,Internet_Internet-Photos,314,9340577,-26,210186929,284
-dell.com,Computers_and_Technology_Consumer_Goods_and_Retail_Computers_and_Technology-Other_Consumer_Goods_and_Retail-Computers,315,7404674,-21,99050790,340
+dell.com,Computers_and_Technology_Computers_and_Technology-Hardware,315,7404674,-21,99050790,340
 samsung.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Consumer_Electronics,317,6765310,-27,39513791,220
 espncricinfo.com,Sports_Sports-Cricket,318,2707682,-33,63709738,378
 pandora.com,Arts_and_Entertainment_Arts_and_Entertainment-Music,323,9076792,-19,80234728,182
@@ -274,7 +274,7 @@ squarespace.com,Internet_Internet-Blogging_Platforms_and_Tools,646,4712424,7,661
 superuser.com,Computers_and_Technology_Computers_and_Technology-Programming,647,6461101,-9,11156360,104
 udemy.com,Education_Education-Online,649,2551603,-19,39877856,478
 pcmag.com,Computers_and_Technology_Computers_and_Technology-News,650,6692112,-20,28678881,196
-bodybuilding.com,Consumer_Goods_and_Retail_Sports_Consumer_Goods_and_Retail-Health_and_Healthcare_Sports-Strength_Sports,651,5091619,-28,60705201,345
+bodybuilding.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Strength_Sports,651,5091619,-28,60705201,345
 zulily.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Clothing,652,6653829,-14,251587254,630
 youjizz.com,Society_Society-Adult,654,3456415,-23,85918358,545
 hostgator.com,Internet_Internet-Hosting,659,633709,-46,15720682,544
@@ -282,7 +282,7 @@ pch.com,Business_and_Industry_Business_and_Industry-Marketing_and_Advertising,66
 latimes.com,News_and_Media_News_and_Media-News,661,9573821,-25,32705087,177
 ytimg.com,Internet_Internet-File_Sharing_and_Storage,662,3613304,-12,6064675,73
 patch.com,News_and_Media_News_and_Media-News,663,3924472,-7,13766395,76
-constantcontact.com,Business_and_Industry_Internet_Business_and_Industry-Marketing_and_Advertising_Internet-Email,668,5193579,-30,62201340,304
+constantcontact.com,Business_and_Industry_Business_and_Industry-Marketing_and_Advertising_Internet-Email,668,5193579,-30,62201340,304
 swagbucks.com,Business_and_Industry_Business_and_Industry-Marketing_and_Advertising,670,1420217,-31,157371677,859
 custhelp.com,Internet_Internet-Email,673,6679035,-28,26758990,170
 bhphotovideo.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Photography,674,8160223,-28,78018398,255
@@ -369,7 +369,7 @@ deviantart.net,Arts_and_Entertainment_Arts_and_Entertainment,874,3648436,-12,118
 sfgate.com,News_and_Media_News_and_Media-News,876,7467507,-27,51800224,200
 emgn.com,Arts_and_Entertainment_Arts_and_Entertainment-News,877,1304910,7,6603554,168
 coupons.com,Home_Home-Lifestyle,879,7079085,-32,40910909,144
-intel.com,Business_and_Industry_Consumer_Goods_and_Retail_Business_and_Industry-Electronics_and_Electrical_Consumer_Goods_and_Retail-Computers,880,3027714,-31,30800893,260
+intel.com,Business_and_Industry_Business_and_Industry-Electronics_and_Electrical_Consumer_Goods_and_Retail-Computers,880,3027714,-31,30800893,260
 123rf.com,Arts_and_Entertainment_Arts_and_Entertainment-Photography,882,1590286,-8,10053522,255
 zara.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Clothing,883,3164792,-22,79354186,436
 thedailybeast.com,News_and_Media_News_and_Media-News,884,9411094,-26,44519688,207
@@ -432,7 +432,7 @@ instructure.com,Education_Education-Online,1030,5200665,83,469607344,764
 state.gov,Government_Government-National,1031,5192481,-24,61536659,446
 adultfriendfinder.com,Society_Society-Adult,1038,2112971,-46,73324014,770
 dafont.com,Computers_and_Technology_Computers_and_Technology-Graphics,1039,2648827,-12,35587094,335
-noaa.gov,Government_Science_Government-National_Science-Environment,1040,5695206,-10,53857035,197
+noaa.gov,Government_Government-National_Science-Environment,1040,5695206,-10,53857035,197
 genius.com,Education_Education-Online,1041,5556012,5,40702508,213
 cbslocal.com,News_and_Media_News_and_Media-News,1044,7877087,-31,21304564,133
 xtube.com,Society_Society-Adult,1045,4752813,-12,167548152,633
@@ -451,7 +451,7 @@ theatlantic.com,News_and_Media_News_and_Media-Magazines,1069,9246606,-4,30304097
 qvc.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-General_Merchandise,1070,4837950,-16,165958834,580
 legacy.com,Society_Society-Genealogy,1071,9252475,-17,76934285,180
 apache.org,Computers_and_Technology_Computers_and_Technology-Software,1072,1088185,-24,7969154,227
-irs.gov,Business_and_Industry_Government_Business_and_Industry-Legal_Government-National,1075,5760533,-35,55589487,285
+irs.gov,Government_Government-Legal_Government-National,1075,5760533,-35,55589487,285
 ft.com,Finance_and_Economics_Finance_and_Economics-News,1076,3950810,-26,16564505,186
 askubuntu.com,Computers_and_Technology_Computers_and_Technology-Software,1078,4142081,1,11898548,161
 merriam-webster.com,Reference_Reference-Dictionaries_and_Encyclopedias,1083,5417367,-18,19169609,167
@@ -569,13 +569,13 @@ ea.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,1353,4757659,-15,3139
 mcafee.com,Internet_Internet-Security,1354,2747831,-27,13989277,182
 tunein.com,Arts_and_Entertainment_Arts_and_Entertainment-News,1358,3130867,-29,18503823,152
 givemesport.com,Sports_Sports-News,1362,778997,-28,6185012,174
-ed.gov,Education_Government_Education-Other_Government-National,1365,5479356,-30,72150363,507
+ed.gov,Education_Education-Other_Government-National,1365,5479356,-30,72150363,507
 depositphotos.com,Internet_Internet-Photos,1367,464759,-29,4201310,325
 iconosquare.com,Internet_Internet-Photos,1371,1154482,-45,26931614,413
 watch-series-tv.to,Internet_Internet-Videos,1377,21190,-100,50961,198
 seekingalpha.com,Finance_and_Economics_Finance_and_Economics-Services,1378,2110416,-26,42672843,875
 myanimelist.net,Arts_and_Entertainment_Arts_and_Entertainment-Comics,1380,1959545,-18,42693996,311
-pbs.org,Government_News_and_Media_Government-National_News_and_Media-Television,1382,9243066,7,39614489,181
+pbs.org,Government_Government-National_News_and_Media-Television,1382,9243066,7,39614489,181
 weheartit.com,X,1387,723397,-25,5917518,437
 mangareader.net,Arts_and_Entertainment_Arts_and_Entertainment-Comics,1391,916982,-17,69651696,848
 orbitz.com,Travel_and_Transport_Travel_and_Transport-Other,1393,8723517,-29,95389728,382
@@ -796,7 +796,7 @@ bustle.com,X,1984,8771569,2,16587361,141
 theglobeandmail.com,News_and_Media_News_and_Media-News,1986,1120382,-35,2323976,184
 leadpages.net,X,1989,1361851,-60,10120216,226
 buzzlie.com,X,1992,6535085,18,116581930,280
-cdc.gov,Government_Health_and_Healthcare_Government-National_Health_and_Healthcare-Conditions_and_Diseases,1994,4270281,-21,21787252,193
+cdc.gov,Government_Government-National_Health_and_Healthcare-Conditions_and_Diseases,1994,4270281,-21,21787252,193
 mercola.com,Health_and_Healthcare_Health_and_Healthcare-Alternative,1999,2600679,-37,8790410,184
 cheatsheet.com,X,2006,7048413,-6,38994050,178
 autoblog.com,Travel_and_Transport_Travel_and_Transport-Autos,2008,4504930,-8,35208931,176
@@ -815,7 +815,7 @@ thestreet.com,Finance_and_Economics_Finance_and_Economics-Investing,2048,4215537
 nhl.com,Sports_Sports-Winter_Sports,2049,3279097,-42,29575262,229
 abc.go.com,News_and_Media_News_and_Media-Television,2068,8202123,-2,42501306,207
 msdn.com,X,2069,1194609,-21,2923440,118
-cornell.edu,Education_Government_Education-Colleges_and_Universities_Government-National,2071,3087170,-7,35590210,266
+cornell.edu,Education_Education-Colleges_and_Universities_Government-National,2071,3087170,-7,35590210,266
 hotwire.com,Travel_and_Transport_Travel_and_Transport-Other,2072,6986611,-32,48999490,271
 caranddriver.com,Travel_and_Transport_Travel_and_Transport-Autos,2077,4015642,-33,30829820,208
 suntrust.com,X,2078,4202087,-36,102026519,309
@@ -838,7 +838,7 @@ apartmenttherapy.com,Home_Home-Lifestyle,2118,3068440,-15,21881830,195
 tv.com,News_and_Media_News_and_Media-Television,2120,7611315,-21,28563452,142
 ubuntuforums.org,Computers_and_Technology_Computers_and_Technology-Software,2125,2151926,10,4622091,127
 adam4adam.com,Society_Society-Adult,2129,2498747,-16,394013661,1717
-adweek.com,Business_and_Industry_News_and_Media_Business_and_Industry-Marketing_and_Advertising_News_and_Media-Other,2132,2379341,-37,7412051,136
+adweek.com,News_and_Media_News_and_Media-Marketing_and_Advertising_News_and_Media-Other,2132,2379341,-37,7412051,136
 bhg.com,Home_Home-Lifestyle,2133,6758581,-17,55970286,184
 chess.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,2134,1297665,-34,56914508,1173
 ap.org,News_and_Media_News_and_Media-Other,2141,4763681,-16,15880994,183
