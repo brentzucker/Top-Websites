@@ -1,13 +1,17 @@
 function barChart() {
-	var margin = {top: 20, right: 80, bottom: 250, left: 80},
-		width = 960 - margin.left - margin.right,
-		height = 600 - margin.top - margin.bottom;
+    var margin = {top: 20, right: 80, bottom: 30, left: 80},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
 	var yScale = d3.scale.ordinal()
 		.rangeRoundBands([0, height], .1);
 
 	var xScale = d3.scale.linear()
 		.range([0, width]);
+
+    // fill color
+    var cValue = function(d) { return d.key; },
+    color = d3.scale.category20();
 
 	var xAxis = d3.svg.axis()
 		.scale(xScale)
@@ -16,7 +20,8 @@ function barChart() {
 
 	var yAxis = d3.svg.axis()
 		.scale(yScale)
-		.orient("left");
+		.orient("left")
+        .tickValues(0);
 
 	var svg = d3.select("body").append("svg")
 		.attr("class", "barchart")
@@ -63,13 +68,10 @@ function barChart() {
 	  svg.append("g")
 		  .attr("class", "x axis")
 		  .attr("transform", "translate(0," + height + ")")
-		  .call(xAxis)
-		  .selectAll("text")  
-	      .style("text-anchor", "end");
+		  .call(xAxis);
 
 	  svg.append("g")
 		  .attr("class", "y axis")
-		  .attr("transform", "translate(0," + 0 + ")")
 		  .call(yAxis);
 
 	  svg.selectAll(".bar")
@@ -80,7 +82,25 @@ function barChart() {
 		  .attr("y", function(d) { return yScale(d.key); })
 		  .attr("height", yScale.rangeBand())
 		  .attr("x", function(d) { return 0; })
-		  .attr("width", function(d) { return xScale(d.values); });
+		  .attr("width", function(d) { return xScale(d.values); })
+		  .style("fill", function(d) { return color(cValue(d)); })
+          .text(function(d) { return d.key; });
+	
+      svg.selectAll(".bartext")
+          .data(data)
+          .enter()
+          .append("text")
+          .attr("class", "bartext")
+          .attr("x", function(d) {
+            return 3;
+          })
+          .attr("y", function(d) {
+            return yScale(d.key) + yScale.rangeBand()/2 + 4;
+          })
+          .text(function(d) {
+            return d.key;
+          });
+
 	});
 
 	function type(d) {

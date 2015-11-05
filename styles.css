@@ -24,9 +24,13 @@ body {
 /* Bar Chart */
 
 .bar {
-  fill: steelblue;
+  /*fill: steelblue;*/
 }
 
 .bar:hover {
-  fill: brown;
+  /*fill: brown;*/
+}
+
+.bartext {
+	fill: orange;
 }
