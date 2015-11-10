@@ -1,5 +1,9 @@
 function scatterPlot() {
 
+	var margin = {top: 20, right: 0, bottom: 30, left: 80},
+	    width = 960 - margin.left - margin.right,
+	    height = 500 - margin.top - margin.bottom;
+
 	var xAxisScatter = d3.scale.linear()
 	    .range([0, width]);
 

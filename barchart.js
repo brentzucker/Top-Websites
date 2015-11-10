@@ -1,5 +1,9 @@
 function barChart() {
 
+	var margin = {top: 20, right: 80, bottom: 30, left: 10},
+	    width = 960/2 - margin.left - margin.right,
+	    height = 500 - margin.top - margin.bottom;
+
 	var xScaleBar = d3.scale.linear()
 		.range([0, width]);
 
