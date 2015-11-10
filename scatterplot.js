@@ -1,16 +1,12 @@
 function scatterPlot() {
 
-	var margin = {top: 20, right: 80, bottom: 30, left: 80},
-	    width = 960 - margin.left - margin.right,
-	    height = 500 - margin.top - margin.bottom;
-
-	var x = d3.scale.linear()
+	var xAxisScatter = d3.scale.linear()
 	    .range([0, width]);
 
-	var y = d3.scale.linear()
+	var yAxisScatter = d3.scale.linear()
 	    .range([height, 0]);
 
-	var r = d3.scale.linear()
+	var rScatter = d3.scale.linear()
 		.range([.5, 5]);
 
 	// fill color
@@ -18,15 +14,15 @@ function scatterPlot() {
 		color = d3.scale.category20();
 
 	var xAxis = d3.svg.axis()
-	    .scale(x)
+	    .scale(xAxisScatter)
 	    .orient("bottom");
 
 	var yAxis = d3.svg.axis()
-	    .scale(y)
+	    .scale(yAxisScatter)
 	    .orient("left");
 
 	// graph canvas
-	var svg = d3.select("body").append("svg")
+	var graphScatter = d3.select("body").append("svg")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
 	  .append("g")
@@ -58,12 +54,12 @@ function scatterPlot() {
 		}
 	  });
 
-	  x.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
-	  y.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
-	  r.domain(d3.extent(data, function(d) { return d.time_on_site; }));
+	  xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
+	  yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
+	  rScatter.domain(d3.extent(data, function(d) { return d.time_on_site; }));
 
-	  // x-axis
-	  svg.append("g")
+	  // xAxisScatter-axis
+	  graphScatter.append("g")
 	      .attr("class", "x axis")
 	      .attr("transform", "translate(0," + height + ")")
 	      .call(xAxis)
@@ -74,9 +70,9 @@ function scatterPlot() {
 	      .style("text-anchor", "end")
 	      .text("Page Views (U.S.)");
 
-	  // y-axis
-	  svg.append("g")
-	      .attr("class", "y axis")
+	  // yAxisScatter-axis
+	  graphScatter.append("g")
+	      .attr("class", "yAxisScatter axis")
 	      .call(yAxis)
 	    .append("text")
 	      .attr("class", "label")
@@ -87,15 +83,15 @@ function scatterPlot() {
 	      .text("Unique Visitors (U.S.)")
 
 	  // draw dots
-	  svg.selectAll(".dot")
+	  graphScatter.selectAll(".dot")
 	      .data(data)
 	    .enter().append("circle")
 	      .attr("class", "dot")
 	      .attr("r", function(d) {
-	      	return r(d.time_on_site);
+	      	return rScatter(d.time_on_site);
 	      })
-	      .attr("cx", function(d) { return x(d.pageviews); })
-	      .attr("cy", function(d) { return y(d.unique_visitors); })
+	      .attr("cx", function(d) { return xAxisScatter(d.pageviews); })
+	      .attr("cy", function(d) { return yAxisScatter(d.unique_visitors); })
 	      .style("fill", function(d) { return color(cValue(d));})
 	      .on("mouseover", function(d) {
           tooltip.transition()
@@ -113,7 +109,7 @@ function scatterPlot() {
       });;
 	  
 	  // draw legend
-	  var legend = svg.selectAll(".legend")
+	  var legend = graphScatter.selectAll(".legend")
 	      .data(color.domain())
 	    .enter().append("g")
 	      .attr("class", "legend")

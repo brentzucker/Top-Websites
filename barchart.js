@@ -1,29 +1,26 @@
 function barChart() {
-    var margin = {top: 20, right: 80, bottom: 30, left: 80},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
 
-	var yScale = d3.scale.ordinal()
-		.rangeRoundBands([0, height], .1);
-
-	var xScale = d3.scale.linear()
+	var xScaleBar = d3.scale.linear()
 		.range([0, width]);
 
+	var yScaleBar = d3.scale.ordinal()
+		.rangeRoundBands([0, height], .1);
     // fill color
     var cValue = function(d) { return d.key; },
-    color = d3.scale.category20();
+    	color = d3.scale.category20();
 
-	var xAxis = d3.svg.axis()
-		.scale(xScale)
+	var xAxisBar = d3.svg.axis()
+		.scale(xScaleBar)
 		.orient("bottom")
 		.ticks(10);
 
-	var yAxis = d3.svg.axis()
-		.scale(yScale)
+	var yAxisBar = d3.svg.axis()
+		.scale(yScaleBar)
 		.orient("left")
         .tickValues(0);
 
-	var svg = d3.select("body").append("svg")
+    // graph canvas
+	var graphBar = d3.select("body").append("svg")
 		.attr("class", "barchart")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
@@ -62,31 +59,31 @@ function barChart() {
 		});
 		console.log(data);
 
-	  yScale.domain(data.map(function(d) { return d.key; }));
-	  xScale.domain([0, d3.max(data, function(d) { return d.values; })]);
+	  yScaleBar.domain(data.map(function(d) { return d.key; }));
+	  xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
 
-	  svg.append("g")
+	  graphBar.append("g")
 		  .attr("class", "x axis")
 		  .attr("transform", "translate(0," + height + ")")
-		  .call(xAxis);
+		  .call(xAxisBar);
 
-	  svg.append("g")
+	  graphBar.append("g")
 		  .attr("class", "y axis")
-		  .call(yAxis);
+		  .call(yAxisBar);
 
-	  svg.selectAll(".bar")
+	  graphBar.selectAll(".bar")
 		  .data(data)
 		  .enter()
 		  .append("rect")
 		  .attr("class", "bar")
-		  .attr("y", function(d) { return yScale(d.key); })
-		  .attr("height", yScale.rangeBand())
+		  .attr("y", function(d) { return yScaleBar(d.key); })
+		  .attr("height", yScaleBar.rangeBand())
 		  .attr("x", function(d) { return 0; })
-		  .attr("width", function(d) { return xScale(d.values); })
+		  .attr("width", function(d) { return xScaleBar(d.values); })
 		  .style("fill", function(d) { return color(cValue(d)); })
           .text(function(d) { return d.key; });
 	
-      svg.selectAll(".bartext")
+      graphBar.selectAll(".bartext")
           .data(data)
           .enter()
           .append("text")
@@ -95,7 +92,7 @@ function barChart() {
             return 3;
           })
           .attr("y", function(d) {
-            return yScale(d.key) + yScale.rangeBand()/2 + 4;
+            return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 4;
           })
           .text(function(d) {
             return d.key;
