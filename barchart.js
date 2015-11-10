@@ -5,9 +5,6 @@ function barChart() {
 
 	var yScaleBar = d3.scale.ordinal()
 		.rangeRoundBands([0, height], .1);
-    // fill color
-    var cValue = function(d) { return d.key; },
-    	color = d3.scale.category20();
 
 	var xAxisBar = d3.svg.axis()
 		.scale(xScaleBar)

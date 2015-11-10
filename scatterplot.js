@@ -9,10 +9,6 @@ function scatterPlot() {
 	var rScatter = d3.scale.linear()
 		.range([.5, 5]);
 
-	// fill color
-	var cValue = function(d) { return d.main_category; },
-		color = d3.scale.category20();
-
 	var xAxis = d3.svg.axis()
 	    .scale(xAxisScatter)
 	    .orient("bottom");
@@ -94,19 +90,19 @@ function scatterPlot() {
 	      .attr("cy", function(d) { return yAxisScatter(d.unique_visitors); })
 	      .style("fill", function(d) { return color(cValue(d));})
 	      .on("mouseover", function(d) {
-          tooltip.transition()
-               .duration(200)
-               .style("opacity", .9);
-          tooltip.html(d.site + "<br>" +
-          			   d.main_category)
-               .style("left", (d3.event.pageX + 5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px");
-      })
-      .on("mouseout", function(d) {
-          tooltip.transition()
-               .duration(500)
-               .style("opacity", 0);
-      });;
+	          tooltip.transition()
+	               .duration(200)
+	               .style("opacity", .9);
+	          tooltip.html(d.site + "<br>" + 
+	          			   d.main_category)
+	               .style("left", (d3.event.pageX + 5) + "px")
+               	   .style("top", (d3.event.pageY - 28) + "px");
+      	  })
+	      .on("mouseout", function(d) {
+	          tooltip.transition()
+	               .duration(500)
+	               .style("opacity", 0);
+	      });;
 	  
 	  // draw legend
 	  var legend = graphScatter.selectAll(".legend")
