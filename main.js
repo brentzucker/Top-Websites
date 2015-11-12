@@ -1,7 +1,5 @@
 $(function() {
 	
-
-
 	// Fill Color
 	cValue = function(d) { 
 			if ('key' in d) {
