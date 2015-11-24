@@ -10,6 +10,6 @@ $(function() {
 		},
     color = d3.scale.category20();
 
-	scatterPlot();
+	scatterPlot(1, 1000);
 	barChart();
 });
