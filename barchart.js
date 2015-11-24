@@ -44,10 +44,6 @@ function barChart() {
 				data[i].main_category = category[0];
 			}
 			data[i].sub_category = category[1];
-
-			if (data[i].main_category === "") {
-				data[i].main_category = "Undefined";
-			}
 		}
 
 		var data = d3.nest()

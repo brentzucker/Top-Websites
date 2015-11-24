@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Slider - Range slider</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script>
+  $(function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 1,
+      max: 1000,
+      values: [ 1, 1000 ],
+      slide: function( event, ui ) {
+
+        var rank = {'min': ui.values[0],
+                    'max': ui.values[1]};
+
+        $('.ui-slider-handle ui-state-default ui-corner-all').val(rank['min']);
+
+        console.log(rank);
+      }
+    });
+    $('.ui-slider-handle ui-state-default ui-corner-all').val(rank['min']);
+  });
+  </script>
+</head>
+<body>
+ 
+<div id="slider-range"></div>
+ 
+ 
+</body>
+</html>

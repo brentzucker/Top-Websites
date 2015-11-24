@@ -48,10 +48,6 @@ function scatterPlot() {
 			d.main_category = category[0];
 		}
 		d.sub_category = category[1];
-
-		if (d.main_category === "") {
-			d.main_category = "Undefined";
-		}
 	  });
 
 	  xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
