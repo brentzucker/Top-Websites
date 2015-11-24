@@ -11,7 +11,7 @@ $(function() {
     color = d3.scale.category20();
 
 	scatterPlot(1, 1000);
-	barChart();
+	barChart(1, 1000);
 	drawSlider();
 });
 
@@ -35,6 +35,14 @@ function drawSlider() {
         $('#right_corner').html(rank['max']);
 
         // console.log(rank);
+
+        // update scatter plot
+    	$('#scatter-plot').html('');
+    	scatterPlot(rank['min'], rank['max']);
+
+    	// update bar chart
+    	$('#bar-chart').html('');
+    	barChart(rank['min'], rank['max']);
       }
     });
 
@@ -58,12 +66,4 @@ function drawSlider() {
 
     $('#slider-range').css('margin-left', margin_left);
     $('#slider-range').css('width', width);
-
-    // Add listeners to slider range
-    $('#slider-range').mouseup(function() {
-
-    	// update scatter plot
-    	$('#scatter-plot').html('');
-    	scatterPlot($( "#slider-range" ).slider('values', 0), $( "#slider-range" ).slider('values', 1));
-    });
 }

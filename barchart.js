@@ -1,4 +1,4 @@
-function barChart() {
+function barChart(min_rank, max_rank) {
 
 	var margin = {top: 20, right: 80, bottom: 30, left: 10},
 	    width = 960/2 - margin.left - margin.right,
@@ -44,7 +44,14 @@ function barChart() {
 				data[i].main_category = category[0];
 			}
 			data[i].sub_category = category[1];
+
+			// set rank as index
+			data[i].rank = i+1;
 		}
+
+		var data = data.filter(function(d) {
+	  		return (d.rank >= min_rank) && (d.rank <= max_rank);
+	  	});
 
 		var data = d3.nest()
 			.key(function(d) { return d.main_category; })
