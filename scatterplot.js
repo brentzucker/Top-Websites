@@ -1,4 +1,4 @@
-function scatterPlot() {
+function scatterPlot(min_rank, max_rank) {
 
 	var margin = {top: 20, right: 0, bottom: 30, left: 80},
 	    width = 960 - margin.left - margin.right,
@@ -36,6 +36,7 @@ function scatterPlot() {
 	d3.csv("top-websites.csv", function(error, data) {
 	  if (error) throw error;
 
+	  var index = 1;
 	  data.forEach(function(d) {
 	    d.unique_visitors = +d.unique_visitors;
 	    d.pageviews = +d.pageviews;
@@ -48,7 +49,12 @@ function scatterPlot() {
 			d.main_category = category[0];
 		}
 		d.sub_category = category[1];
+
+		d.rank = index;
+		index++;
+		console.log(d.rank);
 	  });
+
 
 	  xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
 	  yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
@@ -81,7 +87,9 @@ function scatterPlot() {
 	  // draw dots
 	  graphScatter.selectAll(".dot")
 	      .data(data)
-	    .enter().append("circle")
+	      .enter()
+	      .append("circle")
+	      .filter(function(d) { return (d.rank >= min_rank) && (d.rank <= max_rank); })
 	      .attr("class", "dot")
 	      .attr("r", function(d) {
 	      	return rScatter(d.time_on_site);
@@ -102,6 +110,6 @@ function scatterPlot() {
 	          tooltip.transition()
 	               .duration(500)
 	               .style("opacity", 0);
-	      });;
+	      });
 	});
 }
