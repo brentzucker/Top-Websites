@@ -22,14 +22,14 @@ function scatterPlot(min_rank, max_rank) {
 	    .orient("left");
 
 	// graph canvas
-	var graphScatter = d3.select("body").append("svg")
+	var graphScatter = d3.select("#scatter-plot")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
-	  .append("g")
+	  	.append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	// tooltip area to the webpage
-	var tooltip = d3.select("body").append("div")
+	var tooltip = d3.select("#tooltip")
 	    .attr("class", "tooltip")
 	    .style("opacity", 0);
 
@@ -52,7 +52,10 @@ function scatterPlot(min_rank, max_rank) {
 
 		d.rank = index;
 		index++;
-		console.log(d.rank);
+	  });
+
+	  var data = data.filter(function(d) {
+	  	return (d.rank >= min_rank) && (d.rank <= max_rank);
 	  });
 
 
@@ -89,7 +92,7 @@ function scatterPlot(min_rank, max_rank) {
 	      .data(data)
 	      .enter()
 	      .append("circle")
-	      .filter(function(d) { return (d.rank >= min_rank) && (d.rank <= max_rank); })
+	      // .filter(function(d) { return (d.rank >= min_rank) && (d.rank <= max_rank); })
 	      .attr("class", "dot")
 	      .attr("r", function(d) {
 	      	return rScatter(d.time_on_site);

@@ -23,6 +23,10 @@ body {
 
 /* Bar Chart */
 
+#bar-chart {
+	position: absolute;
+}
+
 .bar {
   /*fill: steelblue;*/
 }

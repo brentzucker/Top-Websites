@@ -21,11 +21,11 @@ function barChart() {
         .tickValues(0);
 
     // graph canvas
-	var graphBar = d3.select("body").append("svg")
+	var graphBar = d3.select("#bar-chart")
 		.attr("class", "barchart")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
-	  .append("g")
+	  	.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	d3.csv("top-websites.csv", type, function(error, data) {

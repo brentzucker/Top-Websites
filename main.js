@@ -34,7 +34,7 @@ function drawSlider() {
         $('#left_corner').html(rank['min']);
         $('#right_corner').html(rank['max']);
 
-        console.log(rank);
+        // console.log(rank);
       }
     });
 
@@ -58,4 +58,12 @@ function drawSlider() {
 
     $('#slider-range').css('margin-left', margin_left);
     $('#slider-range').css('width', width);
+
+    // Add listeners to slider range
+    $('#slider-range').mouseup(function() {
+
+    	// update scatter plot
+    	$('#scatter-plot').html('');
+    	scatterPlot($( "#slider-range" ).slider('values', 0), $( "#slider-range" ).slider('values', 1));
+    });
 }
