@@ -59,11 +59,4 @@ function drawSlider() {
     // Initialize corners with default values
     $('#left_corner').html($( "#slider-range" ).slider('values', 0));
     $('#right_corner').html($( "#slider-range" ).slider('values', 1));
-
-    // Initialize slider's width to fit under scatter plot
-    var margin_left = 80 + 'px';
-    var width = 960 - 80 + 'px';
-
-    $('#slider-range').css('margin-left', margin_left);
-    $('#slider-range').css('width', width);
 }
