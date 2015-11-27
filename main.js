@@ -37,13 +37,10 @@ function drawSlider() {
         // console.log(rank);
 
         // update scatter plot
-    	// $('#scatter-plot').html('');
-      updateScatterPlot(rank['min'], rank['max']);
-    	// scatterPlot(rank['min'], rank['max']);
+        updateScatterPlot(rank['min'], rank['max']);
 
-    	// update bar chart
-    	$('#bar-chart').html('');
-    	barChart(rank['min'], rank['max']);
+    	 // update bar chart
+    	 updateBarChart(rank['min'], rank['max']);
       }
     });
 
