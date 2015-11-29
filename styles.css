@@ -1,7 +1,7 @@
 /* General Styles */
 
 body {
-  font: 12px sans-serif;
+  font: 10px sans-serif;
 }
 
 .axis path,
@@ -11,22 +11,11 @@ body {
   shape-rendering: crispEdges;
 }
 
-#title{
-  position: absolute;
-  margin-left: auto;
-
-}
-
-#websummary{
-  position:absolute;
-  margin-top: 520px;
-  margin-left: 80px;
-}
-
 /* Scatter Plot */
 
 #scatter-plot {
 	position: absolute;
+	margin-top: 50px;
 }
 
 .dot {
@@ -40,8 +29,8 @@ body {
 /* Bar Chart */
 
 #bar-chart {
-  margin-top: 125px; 
 	position: absolute;
+	margin-top: 50px;
 	margin-left: 960px;
 }
 
@@ -61,7 +50,15 @@ body {
 
 #slider-range {
 	position: absolute;
-	margin-top: 500px;
+	margin-top: 550px;
+	margin-left: 80px;
+	width: 880px;
+}
+
+/* Elements */
+#search {
+	margin-top: 10px;
+	position: absolute;
 	margin-left: 80px;
 	width: 880px;
 }
