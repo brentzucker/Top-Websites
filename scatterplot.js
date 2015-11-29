@@ -153,7 +153,7 @@ function updateScatterPlot(min_rank, max_rank) {
 	    var svg = d3.select("#scatter-plot").transition();
 
     	// Make the changes
-	    svg.selectAll(".dot")   // change the line
+	    svg.selectAll(".dot")
 	        .duration(750)
 	        .attr("r", function(d) { return rScatter(d.time_on_site); })
 	      	.attr("cx", function(d) { return xAxisScatter(d.pageviews); })

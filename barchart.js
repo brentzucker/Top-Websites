@@ -151,22 +151,64 @@ function updateBarChart(min_rank, max_rank) {
 
 
 	    // Select the section we want to apply our changes to
-	    var svg = d3.select("#bar-chart").transition();
+	    var svg = d3.select("#bar-chart");
 
-    	// Make the changes
-	    svg.selectAll(".bar")   // change the line
-	        .duration(750)
-	        .attr("y", function(d) { return yScaleBar(d.key); })
-		  	.attr("height", yScaleBar.rangeBand())
-		  	.attr("x", function(d) { return 0; })
-		  	.attr("width", function(d) { return xScaleBar(d.values); })
-		  	.style("fill", function(d) { return color(cValue(d)); });
-	    svg.select(".x.axis") // change the x axis
+	    /* Update Bar Chart Values */ 
+
+    	// Remove all bars
+    	svg.selectAll(".bar")
+    		.remove();
+    	
+    	// New value of bars
+    	svg.selectAll(".bar")
+		  .data(data)
+		  .enter()
+		  .append("rect")
+		  .attr("class", "bar")
+		  .attr("y", function(d) { return yScaleBar(d.key); })
+		  .attr("height", yScaleBar.rangeBand())
+		  .attr("x", function(d) { return 0; })
+		  .attr("width", function(d) { return xScaleBar(d.values); })
+		  .style("fill", function(d) { return color(cValue(d)); })
+          .text(function(d) { return d.key; });
+
+	    // svg.selectAll(".bar")
+	    //     .duration(750)
+	    //     // .remove()
+	    //     .attr("y", function(d) { return yScaleBar(d.key); })
+		  	// .attr("height", yScaleBar.rangeBand())
+		  	// .attr("x", function(d) { return 0; })
+		  	// .attr("width", function(d) { return xScaleBar(d.values); })
+		  	// .style("fill", function(d) { return color(cValue(d)); });
+	    
+	    /* Update Axis */
+	    svg.select(".x.axis")
+	    	.transition() // change the x axis
 	        .duration(750)
 	        .call(xAxisBar);
-	    svg.select(".y.axis") // change the y axis
+	    svg.select(".y.axis")
+	    	.transition() // change the y axis
 	        .duration(750)
 	        .call(yAxisBar);
+
+	    /* Update Bar Chart Text */ 
+	    svg.selectAll(".bartext")
+	    	.remove();
+
+	    svg.selectAll(".bartext")
+          .data(data)
+          .enter()
+          .append("text")
+          .attr("class", "bartext")
+          .attr("x", function(d) {
+            return 3;
+          })
+          .attr("y", function(d) {
+            return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 4;
+          })
+          .text(function(d) {
+            return d.key;
+          });
 
     });
 }
