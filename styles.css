@@ -13,6 +13,10 @@ body {
 
 /* Scatter Plot */
 
+#scatter-plot {
+	position: absolute;
+}
+
 .dot {
   stroke: #000;
 }
@@ -22,6 +26,11 @@ body {
 }
 
 /* Bar Chart */
+
+#bar-chart {
+	position: absolute;
+	margin-left: 960px;
+}
 
 .bar {
   /*fill: steelblue;*/
@@ -33,4 +42,13 @@ body {
 
 .bartext {
 	fill: orange;
+}
+
+/* Slider */
+
+#slider-range {
+	position: absolute;
+	margin-top: 500px;
+	margin-left: 80px;
+	width: 880px;
 }
