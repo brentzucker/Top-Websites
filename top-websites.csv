@@ -28,7 +28,7 @@ stackoverflow.com,Computers_and_Technology_Computers_and_Technology-Programming,
 craigslist.org,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Classifieds,57,28051435,-19,2780277102,848
 pornhub.com,Society_Society-Adult,65,22092765,-19,791839337,610
 diply.com,Internet_Internet-Portals,69,9033029,-36,64236135,172
-go.com,Internet_Internet-Portals,70,30287308,X,1043483711,436
+go.com,Internet_Internet-Portals,70,30287308,-19,1043483711,436
 xhamster.com,Society_Society-Adult,71,9976842,-12,551752227,791
 outbrain.com,Internet_Internet-Web_Design_and_Development,73,25429410,-21,94056169,29
 kat.cr,Arts_and_Entertainment_Arts_and_Entertainment,74,10660677,-9,482751670,332
@@ -178,7 +178,7 @@ nfl.com,Sports_Sports-American_Football,404,12418775,147,373105592,586
 theverge.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Consumer_Information,405,10359191,-2,38902888,163
 icloud.com,Internet_Internet-Cloud_Computing,406,9388348,-16,68824201,231
 photobucket.com,Internet_Internet-Photos,413,5964879,-37,44379422,187
-oracle.com,Computers_and_Technology_Computers_and_Technology-Software,415,4779172,X,88040533,406
+oracle.com,Computers_and_Technology_Computers_and_Technology-Software,415,4779172,-16,88040533,406
 taleo.net,Internet_Internet-Cloud_Computing,417,9749165,-31,207531211,405
 battle.net,Arts_and_Entertainment_Arts_and_Entertainment-Games,421,4395526,-29,76615890,321
 reference.com,Reference_Reference-Dictionaries_and_Encyclopedias,422,10679153,-8,47891100,184
@@ -244,7 +244,7 @@ nike.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Sporting_Goods,570,
 cbssports.com,Sports_Sports-News,579,13253569,6,227348369,387
 verizon.com,Business_and_Industry_Business_and_Industry-Telecommunications,580,9492462,-17,175081745,299
 woot.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail,582,5259524,-21,133185039,238
-yts.to,Internet_Internet,583,2763782,X,67251501,243
+yts.to,Internet_Internet,583,2763782,-16,67251501,243
 box.com,Internet_Internet-File_Sharing_and_Storage,586,4934701,-27,105298660,324
 abcnews.go.com,News_and_Media_News_and_Media-News,587,10212266,-31,40279412,206
 timeanddate.com,Science_Science-Astronomy,588,7686236,-4,23707334,146
@@ -481,7 +481,7 @@ movie4k.to,Internet_Internet-Videos,1134,3602948,-14,87691714,177
 pcworld.com,Computers_and_Technology_Computers_and_Technology-News,1139,3838153,-22,8829991,132
 lynda.com,Internet_Internet-Web_Design_and_Development,1140,1790408,-34,17838246,415
 indiegogo.com,Finance_and_Economics_Finance_and_Economics-Investing,1141,4061004,-37,20011351,220
-serverfault.com,Computers_and_Technology_Computers_and_Technology-Programming,1142,2749375,X,6583332,121
+serverfault.com,Computers_and_Technology_Computers_and_Technology-Programming,1142,2749375,-25,6583332,121
 cam4.com,Society_Society-Adult,1143,5338387,-19,52620416,424
 nuvid.com,Society_Society-Adult,1144,3191462,-30,12204727,164
 stanford.edu,Education_Education-Colleges_and_Universities,1145,3480194,-5,36305921,245
@@ -657,7 +657,7 @@ imagefap.com,Society_Society-Adult,1591,1740220,-26,87529632,910
 metrolyrics.com,Arts_and_Entertainment_Arts_and_Entertainment-Music,1594,7109615,-25,16319734,136
 uproxx.com,News_and_Media_News_and_Media-Other,1596,6842293,-39,38346494,247
 porntube.com,Society_Society-Adult,1600,2420084,-27,21310844,289
-berkeley.edu,Education_Education-Colleges_and_Universities,1602,2715201,X,45283813,329
+berkeley.edu,Education_Education-Colleges_and_Universities,1602,2715201,2,45283813,329
 metacritic.com,Arts_and_Entertainment_Arts_and_Entertainment-News,1606,3647694,-41,25679574,157
 ssisurveys.com,Internet_Internet-Hosting,1610,1642372,-40,25758322,208
 nexusmods.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,1611,1464181,-41,68864189,902
@@ -826,7 +826,7 @@ fanboyreport.com,Arts_and_Entertainment_Arts_and_Entertainment-Humor,2083,167170
 dorkly.com,Arts_and_Entertainment_Arts_and_Entertainment-Humor,2085,2595383,-21,22560869,259
 addtoany.com,Internet_Internet-Blogging_Platforms_and_Tools,2099,397962,-48,1677435,64
 esquire.com,Society_Society-Other,2101,5004859,-26,29223272,174
-memecats.com,Society_Society-Other,2104,X,,X,244
+memecats.com,Society_Society-Other,2104,4904859,-20,28113272,244
 elle.com,Arts_and_Entertainment_Arts_and_Entertainment-Fashion,2106,5715915,-17,36335378,157
 redbubble.com,Arts_and_Entertainment_Arts_and_Entertainment-Visual_Arts,2107,2264509,-14,30837574,377
 collegehumor.com,Arts_and_Entertainment_Arts_and_Entertainment-Humor,2108,2596389,-37,24936056,280
@@ -883,7 +883,7 @@ ford.com,Travel_and_Transport_Travel_and_Transport-Autos,2249,4313299,-25,589321
 psychologytoday.com,Health_and_Healthcare_Health_and_Healthcare-Mental_Health,2251,4056786,-14,15391293,168
 www.nhs.uk,Health_and_Healthcare_Health_and_Healthcare-Education,2254,1277512,-23,2055962,152
 nbc.com,News_and_Media_News_and_Media-Television,2257,7487532,-13,36707237,205
-fromdoctopdf.com,Computers_and_Technology_Computers_and_Technology-Software,2260,6071740,X,10831568,71
+fromdoctopdf.com,Computers_and_Technology_Computers_and_Technology-Software,2260,6071740,-15,10831568,71
 study.com,Education_Education-Other,2265,8313515,39,17135693,119
 square-enix.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,2267,563606,-58,8872912,265
 smugmug.com,Internet_Internet-Photos,2269,3159730,-29,67818321,346
@@ -900,7 +900,7 @@ draftkings.com,Sports_Sports-Fantasy,2309,8168325,304,143365947,530
 healthgrades.com,Health_and_Healthcare_Health_and_Healthcare-Medicine,2310,5334110,-24,24488093,176
 wish.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-General_Merchandise,2311,1870351,-20,44589472,641
 dealsplus.com,Consumer_Goods_and_Retail_Consumer_Goods_and_Retail-Consumer_Information,2316,6538490,-22,38437795,97
-moba-stream.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,2322,5370,X,15284850,206
+moba-stream.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,2322,5370,-20,15284850,206
 columbia.edu,Education_Education-Colleges_and_Universities,2324,3042444,-8,55980116,318
 zoosk.com,Internet_Internet-Social_Media,2328,2602647,-16,69478258,350
 avast.com,Internet_Internet-Security,2329,1233188,-48,3846307,160
@@ -931,13 +931,13 @@ scout.com,Sports_Sports-News,2396,3273664,19,75182876,447
 desi-tashan.com,Arts_and_Entertainment_Arts_and_Entertainment,2398,704554,-11,27695562,687
 dominos.com,Arts_and_Entertainment_Arts_and_Entertainment-Dining,2404,4747139,-28,47501350,402
 surveyrouter.com,Internet_Internet-Hosting,2405,1014825,-49,13250091,109
-ieee.org,Computers_and_Technology_Computers_and_Technology-Electronics,2407,2221038,X,11897766,214
+ieee.org,Computers_and_Technology_Computers_and_Technology-Electronics,2407,2221038,-30,11897766,214
 nasdaq.com,Finance_and_Economics_Finance_and_Economics-Investing,2412,1931722,-27,12776972,180
 rockstargames.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,2415,1568473,-52,33230625,374
 ghanaweb.com,News_and_Media_News_and_Media-News,2420,434914,-14,20031558,910
 creativebloq.com,Internet_Internet-Blogging_Platforms_and_Tools,2421,1273194,2,2832943,100
 ipage.com,Internet_Internet-Hosting,2424,198797,-48,3190933,423
-pitchfork.com,Arts_and_Entertainment_Arts_and_Entertainment-Music,2426,3921751,X,28027259,172
+pitchfork.com,Arts_and_Entertainment_Arts_and_Entertainment-Music,2426,3921751,-40,28027259,172
 ucla.edu,Education_Education-Colleges_and_Universities,2428,2712304,4,51378847,322
 bigfishgames.com,Arts_and_Entertainment_Arts_and_Entertainment-Games,2436,1304627,-11,15159739,258
 boxofficemojo.com,Arts_and_Entertainment_Arts_and_Entertainment-Movies,2440,2171994,-51,33615876,196

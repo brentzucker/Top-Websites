@@ -1,41 +1,43 @@
-function scatterPlot() {
+function scatterPlot(min_rank, max_rank) {
 
 	var margin = {top: 20, right: 0, bottom: 30, left: 80},
 	    width = 960 - margin.left - margin.right,
 	    height = 500 - margin.top - margin.bottom;
 
-	var xAxisScatter = d3.scale.linear()
+	/* Global Variables (So that way update can reference them) */
+	xAxisScatter = d3.scale.linear()
 	    .range([0, width]);
 
-	var yAxisScatter = d3.scale.linear()
+	yAxisScatter = d3.scale.linear()
 	    .range([height, 0]);
 
-	var rScatter = d3.scale.linear()
+	rScatter = d3.scale.linear()
 		.range([.5, 5]);
 
-	var xAxis = d3.svg.axis()
+	xAxis = d3.svg.axis()
 	    .scale(xAxisScatter)
 	    .orient("bottom");
 
-	var yAxis = d3.svg.axis()
+	yAxis = d3.svg.axis()
 	    .scale(yAxisScatter)
 	    .orient("left");
 
 	// graph canvas
-	var graphScatter = d3.select("body").append("svg")
+	var graphScatter = d3.select("#scatter-plot")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
-	  .append("g")
+	  	.append("g")
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	// tooltip area to the webpage
-	var tooltip = d3.select("body").append("div")
+	var tooltip = d3.select("#tooltip")
 	    .attr("class", "tooltip")
 	    .style("opacity", 0);
 
 	d3.csv("top-websites.csv", function(error, data) {
 	  if (error) throw error;
 
+	  var index = 1;
 	  data.forEach(function(d) {
 	    d.unique_visitors = +d.unique_visitors;
 	    d.pageviews = +d.pageviews;
@@ -48,7 +50,15 @@ function scatterPlot() {
 			d.main_category = category[0];
 		}
 		d.sub_category = category[1];
+
+		d.rank = index;
+		index++;
 	  });
+
+	  var data = data.filter(function(d) {
+	  	return (d.rank >= min_rank) && (d.rank <= max_rank);
+	  });
+
 
 	  xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
 	  yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
@@ -81,11 +91,11 @@ function scatterPlot() {
 	  // draw dots
 	  graphScatter.selectAll(".dot")
 	      .data(data)
-	    .enter().append("circle")
+	      .enter()
+	      .append("circle")
+	      // .filter(function(d) { return (d.rank >= min_rank) && (d.rank <= max_rank); })
 	      .attr("class", "dot")
-	      .attr("r", function(d) {
-	      	return rScatter(d.time_on_site);
-	      })
+	      .attr("r", function(d) { return rScatter(d.time_on_site); })
 	      .attr("cx", function(d) { return xAxisScatter(d.pageviews); })
 	      .attr("cy", function(d) { return yAxisScatter(d.unique_visitors); })
 	      .style("fill", function(d) { return color(cValue(d));})
@@ -102,6 +112,58 @@ function scatterPlot() {
 	          tooltip.transition()
 	               .duration(500)
 	               .style("opacity", 0);
-	      });;
+	      });
 	});
+}
+
+function updateScatterPlot(min_rank, max_rank) {
+
+    // Get the data again
+    d3.csv("top-websites.csv", function(error, data) {
+	  	
+	  	var index = 1;
+		data.forEach(function(d) {
+		    d.unique_visitors = +d.unique_visitors;
+		    d.pageviews = +d.pageviews;
+
+		    // Organize categories
+			var category = d.category.split('-');
+			if (category[0].substring(category[0].length/2 + 1) === category[0].substring(0, category[0].length/2)) {
+				d.main_category = category[0].substring(category[0].length/2 + 1);
+			} else {
+				d.main_category = category[0];
+			}
+			d.sub_category = category[1];
+
+			d.rank = index;
+			index++;
+		  });
+
+		var data = data.filter(function(d) {
+	  		return (d.rank >= min_rank) && (d.rank <= max_rank);
+	  	});
+
+    	// Scale the range of the data again 
+    	xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
+	  	yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
+	  	rScatter.domain(d3.extent(data, function(d) { return d.time_on_site; }));
+
+
+	    // Select the section we want to apply our changes to
+	    var svg = d3.select("#scatter-plot").transition();
+
+    	// Make the changes
+	    svg.selectAll(".dot")
+	        .duration(750)
+	        .attr("r", function(d) { return rScatter(d.time_on_site); })
+	      	.attr("cx", function(d) { return xAxisScatter(d.pageviews); })
+	      	.attr("cy", function(d) { return yAxisScatter(d.unique_visitors); });
+	    svg.select(".x.axis") // change the x axis
+	        .duration(750)
+	        .call(xAxis);
+	    svg.select(".y.axis") // change the y axis
+	        .duration(750)
+	        .call(yAxis);
+
+    });
 }

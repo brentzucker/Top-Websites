@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script>
   $(function() {
+
+    // Create Slider
     $( "#slider-range" ).slider({
       range: true,
       min: 1,
@@ -19,13 +21,28 @@
         var rank = {'min': ui.values[0],
                     'max': ui.values[1]};
 
-        $('.ui-slider-handle ui-state-default ui-corner-all').val(rank['min']);
+        $('#left_corner').html(rank['min']);
+        $('#right_corner').html(rank['max']);
 
         console.log(rank);
       }
     });
-    $('.ui-slider-handle ui-state-default ui-corner-all').val(rank['min']);
+
+    // Initialize left and right corners with id's
+    $('span.ui-slider-handle.ui-state-default.ui-corner-all').each(function(i) {
+
+      if ($(this).css('left') == '0px') {
+        $(this).attr('id', 'left_corner');
+      } else {
+        $(this).attr('id', 'right_corner');
+      }
+    });
+
+    // Initialize corners with default values
+    $('#left_corner').html($( "#slider-range" ).slider('values', 0));
+    $('#right_corner').html($( "#slider-range" ).slider('values', 1));
   });
+
   </script>
 </head>
 <body>
