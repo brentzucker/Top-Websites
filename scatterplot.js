@@ -101,10 +101,11 @@ function scatterPlot(min_rank, max_rank) {
 	          tooltip.transition()
 	               .duration(200)
 	               .style("opacity", .9);
-	          tooltip.html(d.site + "<br>" + 
+	          tooltip.html(d.site + "<br>" +
 	          			   d.main_category)
 	               .style("left", (d3.event.pageX + 5) + "px")
                	   .style("top", (d3.event.pageY - 28) + "px");
+						$("#siteName").text("Cerealss");
       	  })
 	      .on("mouseout", function(d) {
 	          tooltip.transition()
