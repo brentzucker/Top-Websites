@@ -15,6 +15,7 @@ body {
 
 #scatter-plot {
 	position: absolute;
+	margin-top: 50px;
 }
 
 .dot {
@@ -29,6 +30,7 @@ body {
 
 #bar-chart {
 	position: absolute;
+	margin-top: 50px;
 	margin-left: 960px;
 }
 
@@ -48,7 +50,21 @@ body {
 
 #slider-range {
 	position: absolute;
-	margin-top: 500px;
+	margin-top: 550px;
 	margin-left: 80px;
 	width: 880px;
+}
+
+/* Elements */
+#search {
+	margin-top: 10px;
+	position: absolute;
+	margin-left: 80px;
+	width: 880px;
+}
+
+#websummary{
+  position:absolute;
+  margin-top: 550px;
+  margin-left: 80px;
 }

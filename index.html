@@ -19,9 +19,21 @@
 <script src="main.js"></script>
 <script src="scatterplot.js"></script>
 <script src="barchart.js"></script>
+<h1 class="text-center">Global Website Dashboard</h1>
+<input type="text" class="form-control" id="search" placeholder="Search for a Website">
 <svg id="scatter-plot"></svg>
 <svg id="bar-chart"></svg>
 <div id="slider-range"></div>
 <div id="tooltip"></div>
+<div id="websummary">
+  <h2 id="siteName">All Sites</h2>
+  <table>
+    <tr><td>Category:&nbsp;&nbsp;</td><td id="siteCategory">ALL</td></tr>
+    <tr><td>Global Rank:&nbsp;&nbsp;</td><td id="siteRank">All Rank</td></tr>
+    <tr><td>Unique Visitors:&nbsp;&nbsp;</td><td id="siteVisitors">All Visitors</td></tr>
+    <tr><td>Page Views This Month:&nbsp;&nbsp;</td><td id="siteViews">ALl Views</td></tr>
+    <tr><td>Time On Website (seconds):&nbsp;&nbsp;</td><td id="siteTime">END OF TIME</td></tr>
+  </table>
+</div>
 </body>
 </html>
