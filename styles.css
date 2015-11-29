@@ -14,6 +14,7 @@ body {
 #title{
   position: absolute;
   margin-left: auto;
+
 }
 
 #websummary{
@@ -39,6 +40,7 @@ body {
 /* Bar Chart */
 
 #bar-chart {
+  margin-top: 125px; 
 	position: absolute;
 	margin-left: 960px;
 }
