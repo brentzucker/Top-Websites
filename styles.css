@@ -62,3 +62,9 @@ body {
 	margin-left: 80px;
 	width: 880px;
 }
+
+#websummary{
+  position:absolute;
+  margin-top: 550px;
+  margin-left: 80px;
+}

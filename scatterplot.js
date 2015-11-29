@@ -100,27 +100,32 @@ function scatterPlot(min_rank, max_rank) {
 	      .attr("cy", function(d) { return yAxisScatter(d.unique_visitors); })
 	      .style("fill", function(d) { return color(cValue(d));})
 	      .on("mouseover", function(d) {
-	          tooltip.transition()
-	               .duration(200)
-	               .style("opacity", .9);
-	          tooltip.html(d.site + "<br>" + 
-	          			   d.main_category)
-	               .style("left", (d3.event.pageX + 5) + "px")
-               	   .style("top", (d3.event.pageY - 28) + "px");
+	          // tooltip.transition()
+	          //      .duration(200)
+	          //      .style("opacity", .9);
+	          // tooltip.html(d.site + "<br>" +
+	          // 			   d.main_category)
+	          //      .style("left", (d3.event.pageX + 5) + "px")
+            //    	   .style("top", (d3.event.pageY - 28) + "px");
+						$("#siteName").text(d.site);
+						$("#siteCategory").text(d.main_category);
+						$("#siteRank").text(d["global rank"]);
+						$("#siteVisitors").text(d.unique_visitors);
+						$("#siteViews").text(d.pageviews);
+						$("#siteTime").text(d.time_on_site);
       	  })
-	      .on("mouseout", function(d) {
-	          tooltip.transition()
-	               .duration(500)
-	               .style("opacity", 0);
-	      });
+	      // .on("mouseout", function(d) {
+	      //     tooltip.transition()
+	      //          .duration(500)
+	      //          .style("opacity", 0);
+	      // });
 	});
 }
-
 function updateScatterPlot(min_rank, max_rank) {
 
     // Get the data again
     d3.csv("top-websites.csv", function(error, data) {
-	  	
+
 	  	var index = 1;
 		data.forEach(function(d) {
 		    d.unique_visitors = +d.unique_visitors;
@@ -143,7 +148,7 @@ function updateScatterPlot(min_rank, max_rank) {
 	  		return (d.rank >= min_rank) && (d.rank <= max_rank);
 	  	});
 
-    	// Scale the range of the data again 
+    	// Scale the range of the data again
     	xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
 	  	yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
 	  	rScatter.domain(d3.extent(data, function(d) { return d.time_on_site; }));
