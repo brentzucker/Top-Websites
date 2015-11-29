@@ -90,7 +90,7 @@ function barChart(min_rank, max_rank) {
 		  .append("rect")
 		  .attr("class", "bar")
 		  .attr("y", function(d) { return yScaleBar(d.key); })
-		  .attr("height", yScaleBar.rangeBand())
+		  .attr("height", yScaleBar.rangeBand()/2)
 		  .attr("x", function(d) { return 0; })
 		  .attr("width", function(d) { return xScaleBar(d.values); })
 		  .style("fill", function(d) { return color(cValue(d)); })
@@ -108,7 +108,7 @@ function barChart(min_rank, max_rank) {
             return 3;
           })
           .attr("y", function(d) {
-            return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 4;
+            return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 10;
           })
           .text(function(d) {
             return d.key;
@@ -178,20 +178,23 @@ function updateBarChart(min_rank, max_rank) {
 		  .append("rect")
 		  .attr("class", "bar")
 		  .attr("y", function(d) { return yScaleBar(d.key); })
-		  .attr("height", yScaleBar.rangeBand())
+		  .attr("height", yScaleBar.rangeBand()/2)
 		  .attr("x", function(d) { return 0; })
 		  .attr("width", function(d) { return xScaleBar(d.values); })
 		  .style("fill", function(d) { return color(cValue(d)); })
+          .text(function(d) { return d.key; })
+          .on("click", function(d){
+							filterPlot(d);
+		   });
+		   
+		svg.selectAll(".bar")
+		.filter( function(d){
+			return (clicked[d.key]);
+		})
+		.attr("style", "outline: thin solid black;")
+		.style("fill", function(d) { return color(cValue(d)); })
           .text(function(d) { return d.key; });
-
-	    // svg.selectAll(".bar")
-	    //     .duration(750)
-	    //     // .remove()
-	    //     .attr("y", function(d) { return yScaleBar(d.key); })
-		  	// .attr("height", yScaleBar.rangeBand())
-		  	// .attr("x", function(d) { return 0; })
-		  	// .attr("width", function(d) { return xScaleBar(d.values); })
-		  	// .style("fill", function(d) { return color(cValue(d)); });
+		
 	    
 	    /* Update Axis */
 	    svg.select(".x.axis")
@@ -211,12 +214,13 @@ function updateBarChart(min_rank, max_rank) {
           .data(data)
           .enter()
           .append("text")
+          .style("fill", "black")
           .attr("class", "bartext")
           .attr("x", function(d) {
             return 3;
           })
           .attr("y", function(d) {
-            return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 4;
+            return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 10;
           })
           .text(function(d) {
             return d.key;
@@ -251,7 +255,6 @@ function updateBarChart(min_rank, max_rank) {
 		.attr("style", "outline: none;")
 		.style("fill", function(d) { return color(cValue(d)); })
           .text(function(d) { return d.key; });
-	
 		
 	  graphScatter.selectAll(".dot")
 	  .filter( function (d) {
