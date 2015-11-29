@@ -1,7 +1,7 @@
 /* General Styles */
 
 body {
-  font: 10px sans-serif;
+  font: 12px sans-serif;
 }
 
 .axis path,
@@ -9,6 +9,17 @@ body {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
+}
+
+#title{
+  position: absolute;
+  margin-left: auto;
+}
+
+#websummary{
+  position:absolute;
+  margin-top: 520px;
+  margin-left: 80px;
 }
 
 /* Scatter Plot */
