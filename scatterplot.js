@@ -99,6 +99,7 @@ function scatterPlot(min_rank, max_rank) {
 	      .attr("cx", function(d) { return xAxisScatter(d.pageviews); })
 	      .attr("cy", function(d) { return yAxisScatter(d.unique_visitors); })
 	      .style("fill", function(d) { return color(cValue(d));})
+	      .style("opacity", .25)
 	      .on("mouseover", function(d) {
 	          tooltip.transition()
 	               .duration(200)
@@ -146,7 +147,7 @@ function updateScatterPlot(min_rank, max_rank) {
     	// Scale the range of the data again 
     	xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
 	  	yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
-	  	rScatter.domain(d3.extent(data, function(d) { return d.time_on_site; }));
+	  	rScatter.domain(d3.extent(data, function(d) { return d.time_on_site; })).nice();
 
 
 	    // Select the section we want to apply our changes to

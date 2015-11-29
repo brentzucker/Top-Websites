@@ -1,3 +1,5 @@
+var clicked = {};
+
 function barChart(min_rank, max_rank) {
 
 	var margin = {top: 20, right: 80, bottom: 30, left: 10},
@@ -58,11 +60,17 @@ function barChart(min_rank, max_rank) {
 			.key(function(d) { return d.main_category; })
 			.rollup(function(leaves) { return leaves.length; })
 			.entries(data);
+		
+		
+		for(i = 0;i < data.length;i++){
+			clicked[data[i].key] = 0;
+			console.log(data[i].key);
+		}
+		console.log(clicked);
 
 		data.sort(function(a, b) {
 			return b.values - a.values;
 		});
-		console.log(data);
 
 	  yScaleBar.domain(data.map(function(d) { return d.key; }));
 	  xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
@@ -86,7 +94,10 @@ function barChart(min_rank, max_rank) {
 		  .attr("x", function(d) { return 0; })
 		  .attr("width", function(d) { return xScaleBar(d.values); })
 		  .style("fill", function(d) { return color(cValue(d)); })
-          .text(function(d) { return d.key; });
+          .text(function(d) { return d.key; })
+          .on("click", function(d){
+							filterPlot(d);
+					  });
 	
       graphBar.selectAll(".bartext")
           .data(data)
@@ -101,7 +112,8 @@ function barChart(min_rank, max_rank) {
           })
           .text(function(d) {
             return d.key;
-          });
+          })
+          .style("fill", "black");
 
 	});
 
@@ -211,4 +223,53 @@ function updateBarChart(min_rank, max_rank) {
           });
 
     });
+  }
+  // Link logic when bar is brushed
+  function filterPlot(bar){
+	  // If category not clicked, set clicked
+	  if(!(clicked[bar.key])){
+			  clicked[bar.key] = 1;
+	  } else {
+		  clicked[bar.key] = 0;
+	  }
+	    
+	  // Fade out unclicked categories
+	  var graphScatter = d3.select("#scatter-plot");
+	  var graphBar = d3.select("#bar-chart");
+	  graphBar.selectAll(".bar")
+		.filter( function(d){
+			return (clicked[d.key]);
+		})
+		.attr("style", "outline: thin solid black;")
+		.style("fill", function(d) { return color(cValue(d)); })
+          .text(function(d) { return d.key; });
+
+	  graphBar.selectAll(".bar")
+		.filter( function(d){
+			return (!clicked[d.key]);
+		})
+		.attr("style", "outline: none;")
+		.style("fill", function(d) { return color(cValue(d)); })
+          .text(function(d) { return d.key; });
+	
+		
+	  graphScatter.selectAll(".dot")
+	  .filter( function (d) {
+		  return (!clicked[d.main_category]);
+      })
+      .transition()
+      .delay(100)
+      .duration(400)
+      .style("opacity", .25);
+      
+      // Fade in clicked category
+      graphScatter.selectAll(".dot")
+	  .filter( function (d) {
+		  return (clicked[d.main_category]);
+      })
+      .transition()
+      .delay(100)
+      .duration(400)
+      .style("opacity", 1);
 }
+
