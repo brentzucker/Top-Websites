@@ -109,6 +109,14 @@ function scatterPlot(min_rank, max_rank) {
 			$("#siteViews").text(d.pageviews);
 			$("#siteTime").text(d.time_on_site);
       	  })
+      	  .on("mouseout", function(d) {
+      	  	var pageviews_sum = 0;
+      	  	for (var i = 0; i < data.length; i++) {
+      	  		pageviews_sum += data[i].pageviews
+      	  	}
+      	  	var pageviews_avg = parseInt(pageviews_sum / data.length);
+      	  	$("#siteViews").text(pageviews_avg);
+      	  })
 	});
 }
 function updateScatterPlot(min_rank, max_rank) {
