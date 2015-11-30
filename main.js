@@ -76,13 +76,32 @@ function searchBar() {
     console.log(website);
     
     // $('#' + website).attr('class', 'search-result');
-    document.getElementById(website).setAttribute('class', 'dot search-result');
+    if (website !== undefined) {
+      document.getElementById(website).setAttribute('class', 'dot search-result');
+    }
   });
 }
 
 function getWebsiteName(website_names, search_term) {
   
-  // If search term is the exact name of website
-  if (website_names.indexOf(search_term) > -1) return website_names[website_names.indexOf(search_term)];
+  // Remove extra whitespace
+  search_term = search_term.trim();
+
+  // Edge cases
+  if (search_term.length == 0) return undefined;
+
+  // If search term is the exact name of a website
+  if (website_names.indexOf(search_term) > -1) { 
+    return website_names[website_names.indexOf(search_term)];
+  }
+  
+  // If search term is contained in name of a website
+  for (var i = 0; i < website_names.length; i++) {
+      if (website_names[i].indexOf(search_term) > -1) { 
+        return website_names[i];
+      }
+  }
+
+  // Not found, return undefined
   return undefined;
 }
