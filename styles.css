@@ -83,6 +83,12 @@ body {
   border-radius: 2px;
 }
 
+/* Search Results */
+.search-result {
+	stroke-width: 2;
+	stroke: gold;
+}
+
 /* Custom Bootstrap */
 
 .container {
