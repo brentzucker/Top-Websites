@@ -37,7 +37,6 @@ function scatterPlot(min_rank, max_rank) {
 	d3.csv("top-websites.csv", function(error, data) {
 	  if (error) throw error;
 
-	  var index = 1;
 	  data.forEach(function(d) {
 	    d.unique_visitors = +d.unique_visitors;
 	    d.pageviews = +d.pageviews;
@@ -50,9 +49,6 @@ function scatterPlot(min_rank, max_rank) {
 			d.main_category = category[0];
 		}
 		d.sub_category = category[1];
-
-		d.rank = index;
-		index++;
 	  });
 
 	  var data = data.filter(function(d) {
@@ -113,7 +109,6 @@ function updateScatterPlot(min_rank, max_rank) {
     // Get the data again
     d3.csv("top-websites.csv", function(error, data) {
 
-	  	var index = 1;
 		data.forEach(function(d) {
 		    d.unique_visitors = +d.unique_visitors;
 		    d.pageviews = +d.pageviews;
@@ -126,9 +121,6 @@ function updateScatterPlot(min_rank, max_rank) {
 				d.main_category = category[0];
 			}
 			d.sub_category = category[1];
-
-			d.rank = index;
-			index++;
 		  });
 
 		var data = data.filter(function(d) {

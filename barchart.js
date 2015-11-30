@@ -138,9 +138,6 @@ function updateBarChart(min_rank, max_rank) {
 				data[i].main_category = category[0];
 			}
 			data[i].sub_category = category[1];
-
-			// set rank as index
-			data[i].rank = i+1;
 		}
 
 		var data = data.filter(function(d) {

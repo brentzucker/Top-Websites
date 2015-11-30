@@ -7,9 +7,7 @@ function searchBar() {
   var website_objects = {};
   d3.csv("top-websites.csv", function(error, data) {
 
-    var index = 1;
     data.forEach(function(d) {
-      d.rank = index++;
       website_names.push(d.site);
       website_objects[d.site] = d;
     });
