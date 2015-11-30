@@ -59,25 +59,37 @@ function searchBar() {
 
   // Get array of all website names
   var website_names = [];
+  var website_objects = {};
   d3.csv("top-websites.csv", function(error, data) {
 
     data.forEach(function(d) {
       website_names.push(d.site);
+      website_objects[d.site] = d;
     });
   });
 
   $('#search').on('change keyup paste', function() {
     
-    // console.log(website_names);
+    console.log(website_objects);
+    
     var search_term = $('#search').val();
 
     // Is term in any website name?
     var website = getWebsiteName(website_names, search_term);
     console.log(website);
+
+    // Unhighlight old search result
+    var previous_search_result = document.getElementsByClassName('search-result');
+    for (var i = 0; i < previous_search_result.length; i++) {
+      previous_search_result[i].setAttribute('class', 'dot');
+    }
     
-    // $('#' + website).attr('class', 'search-result');
+    // Highlight Search result if found
     if (website !== undefined) {
       document.getElementById(website).setAttribute('class', 'dot search-result');
+
+      // TODO: Update Details on Demand
+      console.log(website_objects[website].rank);
     }
   });
 }
