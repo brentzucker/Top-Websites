@@ -110,7 +110,8 @@ function scatterPlot(min_rank, max_rank) {
             //    	   .style("top", (d3.event.pageY - 28) + "px");
 						$("#siteName").text(d.site);
 						$("#siteCategory").text(d.main_category);
-						$("#siteRank").text(d["global rank"]);
+						$("#siteRank").text(d.rank);
+						$("#siteGlobalRank").text(d["global rank"]);
 						$("#siteVisitors").text(d.unique_visitors);
 						$("#siteViews").text(d.pageviews);
 						$("#siteTime").text(d.time_on_site);

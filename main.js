@@ -17,9 +17,6 @@ $(function() {
 
 function drawSlider() {
 
-	// Append slider to bottom of body
-	$('body').append($('#slider-range'));
-
 	// Create Slider
     $( "#slider-range" ).slider({
       range: true,
