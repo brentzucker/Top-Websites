@@ -101,34 +101,10 @@ function scatterPlot(min_rank, max_rank) {
 	      .style("fill", function(d) { return color(cValue(d));})
 	      .style("opacity", .25)
 	      .on("mouseover", function(d) {
-			$("#siteName").text(d.site);
-			$("#siteCategory").text(d.main_category);
-			$("#siteRank").text(d.rank);
-			$("#siteGlobalRank").text(d["global rank"]);
-			$("#siteVisitors").text(d.unique_visitors);
-			$("#siteViews").text(d.pageviews);
-			$("#siteTime").text(d.time_on_site);
+			updateDetailsOnDemandForWebsite(d);
       	  })
       	  .on("mouseout", function(d) {
-      	  	var pageviews_sum = 0;
-						var visitors_sum = 0;
-						var time_sum = 0;
-      	  	for (var i = 0; i < data.length; i++) {
-      	  		pageviews_sum += data[i].pageviews
-							visitors_sum += data[i].unique_visitors
-							time_sum += data[i].time_on_site
-      	  	}
-      	  	var pageviews_avg = parseInt(pageviews_sum / data.length);
-						var visitors_avg = parseInt(visitors_sum / data.length);
-						var time_avg = time_sum / data.length;
-
-						$("#siteName").text("All Websites");
-      	  	$("#siteViews").text(pageviews_avg);
-						$("#siteCategory").text("N/A");
-						$("#siteRank").text("1-1000");
-						$("#siteGlobalRank").text("1-1000");
-						$("#siteVisitors").text(visitors_avg);
-						$("#siteTime").text(time_avg);
+      	  	updateDetailsOnDemandForAverage(data);
       	  })
 	});
 }

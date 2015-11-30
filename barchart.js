@@ -64,7 +64,6 @@ function barChart(min_rank, max_rank) {
 		
 		for(i = 0;i < data.length;i++){
 			clicked[data[i].key] = 0;
-			console.log(data[i].key);
 		}
 		console.log(clicked);
 
@@ -95,9 +94,9 @@ function barChart(min_rank, max_rank) {
 		  .attr("width", function(d) { return xScaleBar(d.values); })
 		  .style("fill", function(d) { return color(cValue(d)); })
           .text(function(d) { return d.key; })
-          .on("click", function(d){
-							filterPlot(d);
-					  });
+          .on("click", function(d) {
+		  	filterPlot(d);
+		  });
 	
       graphBar.selectAll(".bartext")
           .data(data)
