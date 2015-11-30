@@ -111,11 +111,24 @@ function scatterPlot(min_rank, max_rank) {
       	  })
       	  .on("mouseout", function(d) {
       	  	var pageviews_sum = 0;
+						var visitors_sum = 0;
+						var time_sum = 0;
       	  	for (var i = 0; i < data.length; i++) {
       	  		pageviews_sum += data[i].pageviews
+							visitors_sum += data[i].unique_visitors
+							time_sum += data[i].time_on_site
       	  	}
       	  	var pageviews_avg = parseInt(pageviews_sum / data.length);
+						var visitors_avg = parseInt(visitors_sum / data.length);
+						var time_avg = time_sum / data.length;
+
+						$("#siteName").text("All Websites");
       	  	$("#siteViews").text(pageviews_avg);
+						$("#siteCategory").text("N/A");
+						$("#siteRank").text("1-1000");
+						$("#siteGlobalRank").text("1-1000");
+						$("#siteVisitors").text(visitors_avg);
+						$("#siteTime").text(time_avg);
       	  })
 	});
 }
