@@ -29,13 +29,32 @@ function searchBar() {
       previous_search_result[i].setAttribute('class', 'dot');
     }
     
-    // Highlight Search result if found
+    // If the Website is found
     if (website !== undefined) {
-      document.getElementById(website).setAttribute('class', 'dot search-result');
 
-      // TODO: Update Details on Demand
+      // Update Details on Demand
       var d = website_objects[website];
       updateDetailsOnDemandForWebsite(d);
+
+      // Highlight Search Result
+      document.getElementById(website).setAttribute('class', 'dot search-result');
+
+      var r = Math.abs(rScatter(d.time_on_site)) > 5 ? 5 : rScatter(d.time_on_site) < 0 ? -rScatter(d.time_on_site) : rScatter(d.time_on_site);
+
+      // Blink for 2 seconds
+      var BLINK_TIME = 2000;
+      var BLINKS = 4; 
+      var BLINK_SIZE = 15;
+
+      for (var i = 0; i < BLINKS; i++) {
+        d3.selectAll('.search-result')
+          .transition()
+          .delay(i * BLINK_TIME/BLINKS)
+          .duration(BLINK_TIME/BLINKS)
+            .attr("r", function(d) {
+              return i % 2 == 0 ? BLINK_SIZE : r;
+            });
+      }
     }
   });
 }
