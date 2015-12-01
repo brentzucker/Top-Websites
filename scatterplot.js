@@ -38,6 +38,7 @@ function scatterPlot() {
 
 	d3.csv("top-websites.csv", function(error, data) {
 	  if (error) throw error;
+		//populateList(d);
 
 	  data.forEach(function(d) {
 	    
