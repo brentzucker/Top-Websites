@@ -35,6 +35,9 @@ function loadListItems() {
 						+ '<input id="All-checkbox" type="checkbox">'
 						+ '<span class="category-li-text">All</span>'
 					+ '</li>');
+
+		// Initialize All-checkbox as checked
+		$('#All-checkbox').prop('checked', true);
 	
 		// divider b/w all and categories
 		$('ul.dropdown-menu')
@@ -47,6 +50,19 @@ function loadListItems() {
 						+ '<input id="' + name + '-checkbox" type="checkbox">'
 						+ '<span class="category-li-text">' + name + '</span>'
 					+ '</li>');
+
+			// Initalize all checkboxes as checked
+			$('#' + name + '-checkbox').prop('checked', true);
+
+			// TODO: add check listeners to all checkboxes
+			$('#' + name + '-checkbox').change(function() {
+
+				if (this.checked) {
+					console.log('checked');
+				} else {
+					console.log('unchecked');
+				}
+			});
 		});
 
 		// set isLoaded to true
