@@ -27,6 +27,10 @@ body {
 	cursor: pointer;
 }
 
+.hide {
+	display: hidden;
+}
+
 /* Bar Chart */
 
 #bar-chart {

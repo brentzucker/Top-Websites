@@ -71,19 +71,19 @@ function barChart(min_rank, max_rank) {
 			return b.values - a.values;
 		});
 
-	  yScaleBar.domain(data.map(function(d) { return d.key; }));
-	  xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
+		yScaleBar.domain(data.map(function(d) { return d.key; }));
+		xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
 
-	  graphBar.append("g")
+		graphBar.append("g")
 		  .attr("class", "x axis")
 		  .attr("transform", "translate(0," + height + ")")
 		  .call(xAxisBar);
 
-	  graphBar.append("g")
+		graphBar.append("g")
 		  .attr("class", "y axis")
 		  .call(yAxisBar);
 
-	  graphBar.selectAll(".bar")
+		graphBar.selectAll(".bar")
 		  .data(data)
 		  .enter()
 		  .append("rect")
@@ -93,26 +93,26 @@ function barChart(min_rank, max_rank) {
 		  .attr("x", function(d) { return 0; })
 		  .attr("width", function(d) { return xScaleBar(d.values); })
 		  .style("fill", function(d) { return color(cValue(d)); })
-          .text(function(d) { return d.key; })
-          .on("click", function(d) {
+		  .text(function(d) { return d.key; })
+		  .on("click", function(d) {
 		  	filterPlot(d);
 		  });
-	
-      graphBar.selectAll(".bartext")
-          .data(data)
-          .enter()
-          .append("text")
-          .attr("class", "bartext")
-          .attr("x", function(d) {
-            return 3;
-          })
-          .attr("y", function(d) {
-            return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 10;
-          })
-          .text(function(d) {
-            return d.key;
-          })
-          .style("fill", "black");
+
+		graphBar.selectAll(".bartext")
+		  .data(data)
+		  .enter()
+		  .append("text")
+		  .attr("class", "bartext")
+		  .attr("x", function(d) {
+		    return 3;
+		  })
+		  .attr("y", function(d) {
+		    return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 10;
+		  })
+		  .text(function(d) {
+		    return d.key;
+		  })
+		  .style("fill", "black");
 
 	});
 

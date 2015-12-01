@@ -110,6 +110,7 @@ function updateScatterPlot(min_rank, max_rank) {
     // Get the data again
     d3.csv("top-websites.csv", function(error, data) {
 
+    	var website_names_all = [];
 		data.forEach(function(d) {
 		    d.unique_visitors = +d.unique_visitors;
 		    d.pageviews = +d.pageviews;
@@ -122,31 +123,64 @@ function updateScatterPlot(min_rank, max_rank) {
 				d.main_category = category[0];
 			}
 			d.sub_category = category[1];
+
+			// List all website names
+			website_names_all.push(d.site);
 		  });
 
 		var data = data.filter(function(d) {
 	  		return (d.rank >= min_rank) && (d.rank <= max_rank);
 	  	});
 
-    	// Scale the range of the data again
+	  	// Get List of remaining website names
+	  	var website_names_filtered = [];
+	  	data.forEach(function(d) { website_names_filtered.push(d.site); });
+
+	  	// Hide dots not selected
+	  	for (var i = 0; i < website_names_all.length; i++) {
+
+	  		// If the website name is not in the filtered list, hide it
+	  		if (website_names_filtered.indexOf(website_names_all[i]) < 0) {
+
+	  			var w = document.getElementById(website_names_all[i]);
+	  			var classes = w.getAttribute('class');
+	  			if (classes.indexOf('hide') < 0) {
+	  				console.log('hide');
+	  				w.setAttribute('class', classes + ' hide');
+	  			}
+	  		} else {
+	  			// Make sure dot does not have class 'hide'
+	  			var w = document.getElementById(website_names_all[i]);
+	  			var classes = w.getAttribute('class');
+	  			classes = classes.replace('hide', '');
+	  			w.setAttribute('class', classes);
+	  		}
+	  	}
+
+    	// Re Scale the selected range of the data
     	xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
 	  	yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
 	  	rScatter.domain(d3.extent(data, function(d) { return d.time_on_site; })).nice();
 
 
 	    // Select the section we want to apply our changes to
-	    var svg = d3.select("#scatter-plot").transition();
+	    var svg = d3.select("#scatter-plot");
 
-    	// Make the changes
+    	// Update Dots
 	    svg.selectAll(".dot")
+	    	.transition()
 	        .duration(750)
 	        .attr("r", function(d) { return Math.abs(rScatter(d.time_on_site)) > 5 ? 5 : rScatter(d.time_on_site) < 0 ? -rScatter(d.time_on_site) : rScatter(d.time_on_site); })
 	      	.attr("cx", function(d) { return xAxisScatter(d.pageviews); })
 	      	.attr("cy", function(d) { return yAxisScatter(d.unique_visitors); });
+	    
+	    // Update axises
 	    svg.select(".x.axis") // change the x axis
+	    	.transition()
 	        .duration(750)
 	        .call(xAxis);
 	    svg.select(".y.axis") // change the y axis
+	    	.transition()
 	        .duration(750)
 	        .call(yAxis);
 
