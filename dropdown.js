@@ -11,9 +11,19 @@ function dropdown() {
         });
     });
 
+    loadListItems();
+
     $("ul.dropdown-menu li").each(function() {
         $(this).on('click', function() {
         	console.log('click');
         });
     });
+}
+
+function loadListItems() {
+	$('ul.dropdown-menu')
+		.append('<li class="category-li-container">'
+					+ '<input type="checkbox">'
+					+ '<span class="category-li-text">All</span>'
+				+ '</li>');
 }
