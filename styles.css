@@ -109,6 +109,9 @@ ul.dropdown-menu {
 .category-li-text {
 	padding: 8px;
 	font-weight: 400;
+	font-size: 12px;
+	line-height: 0;
+	color: black;
 }
 
 /* Details on Demand */

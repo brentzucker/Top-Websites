@@ -217,6 +217,96 @@ function updateBarChart(min_rank, max_rank) {
       });
 }
 
+function updateBarChartByListOfWebsites(categories_to_display) {
+
+	// Use Global Data
+    var data = global_dataBarChart;
+
+  	var data = d3.nest()
+		.key(function(d) { return d.main_category; })
+		.rollup(function(leaves) { return leaves.length; })
+		.entries(data);
+
+	data.sort(function(a, b) {
+		return b.values - a.values;
+	});
+
+	var data = data.filter(function(d) {
+  		return (categories_to_display.indexOf(d.key) > -1);
+  	});
+
+	// Scale the range of the data again 
+	yScaleBar.domain(data.map(function(d) { return d.key; }));
+  	xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
+
+
+    // Select the section we want to apply our changes to
+    var svg = d3.select("#bar-chart");
+
+    /* Update Bar Chart Values */ 
+
+	// Remove all bars
+	svg.selectAll(".bar")
+		.remove();
+	
+	// New value of bars
+	svg.selectAll(".bar")
+	  .data(data)
+	  .enter()
+	  .append("rect")
+	  .attr("class", function(d) { return 'bar ' + d.key; })
+	  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+	  .attr("y", function(d) { return yScaleBar(d.key); })
+	  .attr("height", yScaleBar.rangeBand()/2)
+	  .attr("x", function(d) { return 0; })
+	  .attr("width", function(d) { return xScaleBar(d.values); })
+	  .style("fill", function(d) { return color(cValue(d)); })
+      .text(function(d) { return d.key; })
+      .on("click", function(d){
+		filterPlot(d);
+	  });
+	   
+	svg.selectAll(".bar")
+	  .filter( function(d){
+	  	return (clicked[d.key]);
+	  })
+	  .attr("style", "outline: thin solid black;")
+	  .style("fill", function(d) { return color(cValue(d)); })
+        .text(function(d) { return d.key; });
+	
+    
+    /* Update Axis */
+    svg.select(".x.axis")
+    	.transition() // change the x axis
+        .duration(750)
+        .call(xAxisBar);
+    svg.select(".y.axis")
+    	.transition() // change the y axis
+        .duration(750)
+        .call(yAxisBar);
+
+    /* Update Bar Chart Text */ 
+    svg.selectAll(".bartext")
+    	.remove();
+
+    svg.selectAll(".bartext")
+      .data(data)
+      .enter()
+      .append("text")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .style("fill", "black")
+      .attr("class", "bartext")
+      .attr("x", function(d) {
+        return 3;
+      })
+      .attr("y", function(d) {
+        return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 10;
+      })
+      .text(function(d) {
+        return d.key;
+      });
+}
+
 // Link logic when bar is brushed
 function filterPlot(bar){
 	// If category not clicked, set clicked
