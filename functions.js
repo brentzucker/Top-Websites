@@ -44,7 +44,7 @@ function searchBar() {
       // Blink for 2 seconds
       var BLINK_TIME = 2000;
       var BLINKS = 4; 
-      var BLINK_SIZE = 15;
+      var BLINK_SIZE = r * 4;
 
       for (var i = 0; i < BLINKS; i++) {
         d3.selectAll('.search-result')
