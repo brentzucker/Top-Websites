@@ -14,9 +14,9 @@ function searchBar() {
   });
 
   $('#search').on('change keyup paste', function() {
-    
+
     console.log(website_objects);
-    
+
     var search_term = $('#search').val();
 
     // Is term in any website name?
@@ -28,7 +28,7 @@ function searchBar() {
     for (var i = 0; i < previous_search_result.length; i++) {
       previous_search_result[i].setAttribute('class', 'dot');
     }
-    
+
     // If the Website is found
     if (website !== undefined) {
 
@@ -43,7 +43,7 @@ function searchBar() {
 
       // Blink for 2 seconds
       var BLINK_TIME = 2000;
-      var BLINKS = 4; 
+      var BLINKS = 4;
       var BLINK_SIZE = 15;
 
       for (var i = 0; i < BLINKS; i++) {
@@ -60,7 +60,7 @@ function searchBar() {
 }
 
 function getWebsiteName(website_names, search_term) {
-  
+
   // Remove extra whitespace
   search_term = search_term.trim();
 
@@ -68,13 +68,13 @@ function getWebsiteName(website_names, search_term) {
   if (search_term.length == 0) return undefined;
 
   // If search term is the exact name of a website
-  if (website_names.indexOf(search_term) > -1) { 
+  if (website_names.indexOf(search_term) > -1) {
     return website_names[website_names.indexOf(search_term)];
   }
-  
+
   // If search term is contained in name of a website
   for (var i = 0; i < website_names.length; i++) {
-      if (website_names[i].indexOf(search_term) > -1) { 
+      if (website_names[i].indexOf(search_term) > -1) {
         return website_names[i];
       }
   }
@@ -134,6 +134,12 @@ function updateDetailsOnDemandForWebsite(d) {
   $("#siteVisitors").text(d.unique_visitors);
   $("#siteViews").text(d.pageviews);
   $("#siteTime").text(d.time_on_site);
+}
+
+function populateList(data){
+  for(var i = 0; i < data.length; i++){
+    $("#list").append("<tr><td>data[i].site</td><td>data[i].main_category</td><td>data[i].rank</td><td>data[i]['global rank']</td><td>data[i].unique_visitors</td><td>data[i].pageviews</td><td>data[i].time_on_site</td>");
+  }
 }
 
 function updateDetailsOnDemandForAverage(data) {

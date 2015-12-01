@@ -40,6 +40,7 @@ function scatterPlot(min_rank, max_rank) {
 	  data.forEach(function(d) {
 	    d.unique_visitors = +d.unique_visitors;
 	    d.pageviews = +d.pageviews;
+			populateList(d);
 
 	    // Organize categories
 		var category = d.category.split('-');

@@ -83,6 +83,19 @@ body {
   border-radius: 2px;
 }
 
+#table{
+  margin-left: auto;
+  margin-right: auto;
+  width: 325px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+#list{
+  overflow-y: scroll;
+  display: block;
+}
+
 /* Search Results */
 .search-result {
 	stroke-width: 2;
