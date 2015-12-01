@@ -91,6 +91,17 @@ body {
 
 .categories-btn {
 	width: 322px;
+	padding: 0px!important;
+	margin: 0px!important;
+	color: rgba(0,0,0, 0.87);
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0;
+	display: inline-block;
+	line-height: 1.42857143;
+	text-align: center;
+	vertical-align: middle;
 }
 
 ul.dropdown-menu {
