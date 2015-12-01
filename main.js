@@ -11,6 +11,7 @@ $(function() {
     color = d3.scale.category20();
 
   searchBar();
+  dropdown();
 	scatterPlot();
 	barChart(1, 1000);
 	drawSlider();

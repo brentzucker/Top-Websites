@@ -37,6 +37,7 @@ body {
 	position: absolute;
 	margin-top: 50px;
 	margin-left: 960px;
+	width: 400px;
 }
 
 .bar {
@@ -77,6 +78,19 @@ body {
 	position: absolute;
 	margin-left: 80px;
 	width: 880px;
+}
+
+/* Category Dropdown */
+
+#category-dropdown-container {
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 960px;
+	width: 400px;
+}
+
+.categories-btn {
+	width: 322px;
 }
 
 /* Details on Demand */

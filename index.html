@@ -26,6 +26,7 @@
 <body>
 
 <script src="main.js"></script>
+<script src="dropdown.js"></script>
 <script src="scatterplot.js"></script>
 <script src="barchart.js"></script>
 <script src="functions.js"></script>
@@ -42,6 +43,18 @@
 	<div class="panel panel-default graph-container">
 		<div class="panel-body">
 			<input type="text" class="form-control" id="search" placeholder="Search for a Website">
+			<!-- Dropdown -->
+			<div id="category-dropdown-container" class="input-group">
+				<div class="input-group-btn">
+					<button tabindex="-1" class="btn btn-default categories-btn" type="button">Categories</button>
+					<button tabindex="-1" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+						<span class="caret"></span>
+					</button>
+					<ul role="menu" class="dropdown-menu">
+					</ul>
+				</div>
+			</div>
+
 			<svg id="scatter-plot"></svg>
 			<svg id="bar-chart"></svg>
 			<div id="slider-range"></div>
