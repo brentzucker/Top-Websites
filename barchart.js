@@ -113,7 +113,7 @@ function barChart() {
 		    return 3;
 		  })
 		  .attr("y", function(d) {
-		    return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 10;
+		    return yScaleBar(d.key) + 13;
 		  })
 		  .text(function(d) {
 		    return d.key;
@@ -212,7 +212,7 @@ function updateBarChart(min_rank, max_rank) {
         return 3;
       })
       .attr("y", function(d) {
-        return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 10;
+        return yScaleBar(d.key) + 13;
       })
       .text(function(d) {
         return d.key;
@@ -303,7 +303,7 @@ function updateBarChartByCategory(categories_to_display) {
         return 3;
       })
       .attr("y", function(d) {
-        return yScaleBar(d.key) + yScaleBar.rangeBand()/2 + 10;
+        return yScaleBar(d.key) + 13;
       })
       .text(function(d) {
         return d.key;
