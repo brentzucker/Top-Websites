@@ -144,6 +144,13 @@ ul.dropdown-menu {
 	padding-bottom: 4px;
 }
 
+#table-panel .panel-body {
+	height: 86px; /* #table-panel height - .panel-heading height */
+	padding-top: 0px;
+	margin-top: -1px;
+	overflow: scroll;
+}
+
 #data-table {
   overflow-y: scroll;
 }
@@ -154,6 +161,10 @@ ul.dropdown-menu {
 
 #data-header.table {
 	margin-bottom: 0px;
+}
+
+th, td {
+	width: 148px;
 }
 
 
