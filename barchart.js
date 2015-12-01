@@ -65,16 +65,16 @@ function barChart() {
 			.rollup(function(leaves) { return leaves.length; })
 			.entries(data);
 
+		data.sort(function(a, b) {
+			return b.values - a.values;
+		});
+
 		// Save category names in Super Global variable to pass into dropdown 
 		data.forEach(function(d) { SUPER_GLOBAL_CATEGORY_NAMES.push(d.key); });
 		
 		for(i = 0;i < data.length;i++){
 			clicked[data[i].key] = 0;
 		}
-
-		data.sort(function(a, b) {
-			return b.values - a.values;
-		});
 
 		yScaleBar.domain(data.map(function(d) { return d.key; }));
 		xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
@@ -217,7 +217,7 @@ function updateBarChart(min_rank, max_rank) {
       });
 }
 
-function updateBarChartByListOfWebsites(categories_to_display) {
+function updateBarChartByCategory(categories_to_display) {
 
 	// Use Global Data
     var data = global_dataBarChart;
