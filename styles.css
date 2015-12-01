@@ -139,6 +139,11 @@ ul.dropdown-menu {
   border-radius: 2px;
 }
 
+#table-panel .panel-heading {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
 #data-table {
   overflow-y: scroll;
 }
