@@ -1,3 +1,6 @@
+/* Super Global Variables */
+SUPER_GLOBAL_CATEGORY_NAMES = [];
+
 /* Global Variables */
 var clicked = {};
 var global_dataBarChart = [];
@@ -61,6 +64,9 @@ function barChart() {
 			.key(function(d) { return d.main_category; })
 			.rollup(function(leaves) { return leaves.length; })
 			.entries(data);
+
+		// Save category names in Super Global variable to pass into dropdown 
+		data.forEach(function(d) { SUPER_GLOBAL_CATEGORY_NAMES.push(d.key); });
 		
 		for(i = 0;i < data.length;i++){
 			clicked[data[i].key] = 0;
