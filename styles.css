@@ -134,8 +134,16 @@ ul.dropdown-menu {
 
 #data-table {
   overflow-y: scroll;
-  display: block;
 }
+
+#data-header tbody, #data-table tbody {
+	/*width: 1055px;*/
+}
+
+#data-header.table {
+	margin-bottom: 0px;
+}
+
 
 /* Search Results */
 .search-result {
