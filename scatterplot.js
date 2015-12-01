@@ -43,7 +43,6 @@ function scatterPlot() {
 	    
 	    d.unique_visitors = +d.unique_visitors;
 	    d.pageviews = +d.pageviews;
-			populateList(d);
 
 	    // Organize categories
 		var category = d.category.split('-');
@@ -54,6 +53,9 @@ function scatterPlot() {
 		}
 		d.sub_category = category[1];
 	  });
+
+	  // Populate the data table
+	  populateList(data);
 
 	  // Save data in global_dataScatterPlot so it only has to be read in once
 	  global_dataScatterPlot = data;
