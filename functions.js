@@ -139,7 +139,16 @@ function updateDetailsOnDemandForWebsite(d) {
 
 function populateList(data){
   for(var i = 0; i < data.length; i++){
-    $("#list").append("<tr><td>data[i].site</td><td>data[i].main_category</td><td>data[i].rank</td><td>data[i]['global rank']</td><td>data[i].unique_visitors</td><td>data[i].pageviews</td><td>data[i].time_on_site</td>");
+    $("#data-table")
+      .append('<tr>'
+                + '<td>' + data[i].site + '</td>'
+                + '<td>' + data[i].main_category + '</td>'
+                + '<td>' + data[i].rank + '</td>'
+                + '<td>' + data[i]['global rank'] + '</td>'
+                + '<td>' + data[i].unique_visitors + '</td>'
+                + '<td>' + data[i].pageviews + '</td>'
+                + '<td>' + data[i].time_on_site + '</td>'
+              + '</tr>');
   }
 }
 
