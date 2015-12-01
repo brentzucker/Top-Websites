@@ -38,12 +38,12 @@ function scatterPlot() {
 
 	d3.csv("top-websites.csv", function(error, data) {
 	  if (error) throw error;
+		//populateList(d);
 
 	  data.forEach(function(d) {
 	    
 	    d.unique_visitors = +d.unique_visitors;
 	    d.pageviews = +d.pageviews;
-			populateList(d);
 
 	    // Organize categories
 		var category = d.category.split('-');
