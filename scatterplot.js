@@ -140,19 +140,17 @@ function updateScatterPlot(min_rank, max_rank) {
   	// Hide dots not selected
   	for (var i = 0; i < website_names_all.length; i++) {
 
+  		var w = document.getElementById(website_names_all[i]);
+  		var classes = w.getAttribute('class');
+
   		// If the website name is not in the filtered list, hide it
   		if (website_names_filtered.indexOf(website_names_all[i]) < 0) {
 
-  			var w = document.getElementById(website_names_all[i]);
-  			var classes = w.getAttribute('class');
   			if (classes.indexOf('hide') < 0) {
-  				console.log('hide');
   				w.setAttribute('class', classes + ' hide');
   			}
   		} else {
   			// Make sure dot does not have class 'hide'
-  			var w = document.getElementById(website_names_all[i]);
-  			var classes = w.getAttribute('class');
   			classes = classes.replace('hide', '');
   			w.setAttribute('class', classes);
   		}

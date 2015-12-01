@@ -60,7 +60,7 @@ body {
 	width: 880px;
 }
 
-/* Elements */
+/* Page Title */
 
 .page-title {
 	margin: 0px;
@@ -70,6 +70,8 @@ body {
 	padding: 8px;
 }
 
+/* Search Bar */
+
 #search {
 	margin-top: 10px;
 	position: absolute;
@@ -77,25 +79,28 @@ body {
 	width: 880px;
 }
 
+/* Details on Demand */
+
 #websummary{
   position:absolute;
-  /*margin-top: 570px;*/
   margin-left: 15px;
   width:  325px;
-  /*background-color: #fcf5eb;*/
   background-color: white;
   border-radius: 2px;
 }
 
-#table{
-  margin-left: auto;
-  margin-right: auto;
-  width: 325px;
+/* Data Table */
+
+#table-panel {
+  position:absolute;
+  margin-left: 355px;
+  height: 134px; /* Same as #websummary */
+  width: 1055px;
   background-color: white;
   border-radius: 2px;
 }
 
-#list{
+#data-table {
   overflow-y: scroll;
   display: block;
 }
