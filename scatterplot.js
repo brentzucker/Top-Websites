@@ -1,4 +1,6 @@
-function scatterPlot(min_rank, max_rank) {
+var global_dataScatterPlot = [];
+
+function scatterPlot() {
 
 	var margin = {top: 20, right: 0, bottom: 30, left: 80},
 	    width = 960 - margin.left - margin.right,
@@ -38,6 +40,7 @@ function scatterPlot(min_rank, max_rank) {
 	  if (error) throw error;
 
 	  data.forEach(function(d) {
+	    
 	    d.unique_visitors = +d.unique_visitors;
 	    d.pageviews = +d.pageviews;
 			populateList(d);
@@ -52,10 +55,8 @@ function scatterPlot(min_rank, max_rank) {
 		d.sub_category = category[1];
 	  });
 
-	  var data = data.filter(function(d) {
-	  	return (d.rank >= min_rank) && (d.rank <= max_rank);
-	  });
-
+	  // Save data in global_dataScatterPlot so it only has to be read in once
+	  global_dataScatterPlot = data;
 
 	  xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
 	  yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
@@ -107,82 +108,80 @@ function scatterPlot(min_rank, max_rank) {
 }
 function updateScatterPlot(min_rank, max_rank) {
 
-    // Get the data again
-    d3.csv("top-websites.csv", function(error, data) {
+    // Use Global Data
+    var data = global_dataScatterPlot;
 
-    	var website_names_all = [];
-		data.forEach(function(d) {
-		    d.unique_visitors = +d.unique_visitors;
-		    d.pageviews = +d.pageviews;
+	var website_names_all = [];
+	data.forEach(function(d) {
+	    d.unique_visitors = +d.unique_visitors;
+	    d.pageviews = +d.pageviews;
 
-		    // Organize categories
-			var category = d.category.split('-');
-			if (category[0].substring(category[0].length/2 + 1) === category[0].substring(0, category[0].length/2)) {
-				d.main_category = category[0].substring(category[0].length/2 + 1);
-			} else {
-				d.main_category = category[0];
-			}
-			d.sub_category = category[1];
+	    // Organize categories
+		var category = d.category.split('-');
+		if (category[0].substring(category[0].length/2 + 1) === category[0].substring(0, category[0].length/2)) {
+			d.main_category = category[0].substring(category[0].length/2 + 1);
+		} else {
+			d.main_category = category[0];
+		}
+		d.sub_category = category[1];
 
-			// List all website names
-			website_names_all.push(d.site);
-		  });
+		// List all website names
+		website_names_all.push(d.site);
+	  });
 
-		var data = data.filter(function(d) {
-	  		return (d.rank >= min_rank) && (d.rank <= max_rank);
-	  	});
+	var data = data.filter(function(d) {
+  		return (d.rank >= min_rank) && (d.rank <= max_rank);
+  	});
 
-	  	// Get List of remaining website names
-	  	var website_names_filtered = [];
-	  	data.forEach(function(d) { website_names_filtered.push(d.site); });
+  	// Get List of remaining website names
+  	var website_names_filtered = [];
+  	data.forEach(function(d) { website_names_filtered.push(d.site); });
 
-	  	// Hide dots not selected
-	  	for (var i = 0; i < website_names_all.length; i++) {
+  	// Hide dots not selected
+  	for (var i = 0; i < website_names_all.length; i++) {
 
-	  		// If the website name is not in the filtered list, hide it
-	  		if (website_names_filtered.indexOf(website_names_all[i]) < 0) {
+  		// If the website name is not in the filtered list, hide it
+  		if (website_names_filtered.indexOf(website_names_all[i]) < 0) {
 
-	  			var w = document.getElementById(website_names_all[i]);
-	  			var classes = w.getAttribute('class');
-	  			if (classes.indexOf('hide') < 0) {
-	  				console.log('hide');
-	  				w.setAttribute('class', classes + ' hide');
-	  			}
-	  		} else {
-	  			// Make sure dot does not have class 'hide'
-	  			var w = document.getElementById(website_names_all[i]);
-	  			var classes = w.getAttribute('class');
-	  			classes = classes.replace('hide', '');
-	  			w.setAttribute('class', classes);
-	  		}
-	  	}
+  			var w = document.getElementById(website_names_all[i]);
+  			var classes = w.getAttribute('class');
+  			if (classes.indexOf('hide') < 0) {
+  				console.log('hide');
+  				w.setAttribute('class', classes + ' hide');
+  			}
+  		} else {
+  			// Make sure dot does not have class 'hide'
+  			var w = document.getElementById(website_names_all[i]);
+  			var classes = w.getAttribute('class');
+  			classes = classes.replace('hide', '');
+  			w.setAttribute('class', classes);
+  		}
+  	}
 
-    	// Re Scale the selected range of the data
-    	xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
-	  	yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
-	  	rScatter.domain(d3.extent(data, function(d) { return d.time_on_site; })).nice();
+	// Re Scale the selected range of the data
+	xAxisScatter.domain(d3.extent(data, function(d) { return d.pageviews; })).nice();
+  	yAxisScatter.domain(d3.extent(data, function(d) { return d.unique_visitors; })).nice();
+  	rScatter.domain(d3.extent(data, function(d) { return d.time_on_site; })).nice();
 
 
-	    // Select the section we want to apply our changes to
-	    var svg = d3.select("#scatter-plot");
+    // Select the section we want to apply our changes to
+    var svg = d3.select("#scatter-plot");
 
-    	// Update Dots
-	    svg.selectAll(".dot")
-	    	.transition()
-	        .duration(750)
-	        .attr("r", function(d) { return Math.abs(rScatter(d.time_on_site)) > 5 ? 5 : rScatter(d.time_on_site) < 0 ? -rScatter(d.time_on_site) : rScatter(d.time_on_site); })
-	      	.attr("cx", function(d) { return xAxisScatter(d.pageviews); })
-	      	.attr("cy", function(d) { return yAxisScatter(d.unique_visitors); });
-	    
-	    // Update axises
-	    svg.select(".x.axis") // change the x axis
-	    	.transition()
-	        .duration(750)
-	        .call(xAxis);
-	    svg.select(".y.axis") // change the y axis
-	    	.transition()
-	        .duration(750)
-	        .call(yAxis);
-
-    });
+	// Update Dots
+    svg.selectAll(".dot")
+    	.transition()
+        .duration(750)
+        .attr("r", function(d) { return Math.abs(rScatter(d.time_on_site)) > 5 ? 5 : rScatter(d.time_on_site) < 0 ? -rScatter(d.time_on_site) : rScatter(d.time_on_site); })
+      	.attr("cx", function(d) { return xAxisScatter(d.pageviews); })
+      	.attr("cy", function(d) { return yAxisScatter(d.unique_visitors); });
+    
+    // Update axises
+    svg.select(".x.axis") // change the x axis
+    	.transition()
+        .duration(750)
+        .call(xAxis);
+    svg.select(".y.axis") // change the y axis
+    	.transition()
+        .duration(750)
+        .call(yAxis);
 }

@@ -11,7 +11,7 @@ $(function() {
     color = d3.scale.category20();
 
   searchBar();
-	scatterPlot(1, 1000);
+	scatterPlot();
 	barChart(1, 1000);
 	drawSlider();
 });
