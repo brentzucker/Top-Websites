@@ -126,11 +126,15 @@ ul.dropdown-menu {
 
 /* Data Table */
 
+#data-header th {
+	border-top-width: 0px!important;
+}
+
 #table-panel {
   position:absolute;
   margin-left: 355px;
   height: 134px; /* Same as #websummary */
-  width: 1055px;
+  width: 1070px;
   background-color: white;
   border-radius: 2px;
 }
@@ -158,7 +162,7 @@ ul.dropdown-menu {
 
 .container {
 	margin: 0px;
-	width: 100%;
+	width: 1440px;
 }
 
 .graph-container {
@@ -168,4 +172,8 @@ ul.dropdown-menu {
 .graph-container .panel-body {
 	padding-top: 0px;
 	padding-bottom: 0px;
+}
+
+.panel {
+	margin-bottom: 15px;
 }
