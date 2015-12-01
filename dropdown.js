@@ -56,6 +56,7 @@ function loadListItems() {
 					categories_to_display.splice(categories_to_display.indexOf(name), 1);
 				}
 				updateBarChartByCategory(categories_to_display);
+				updateScatterPlotByCategory(categories_to_display);
 			});
 		});
 
