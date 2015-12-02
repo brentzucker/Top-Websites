@@ -1,6 +1,8 @@
+/* Super Global Variables */
+SUPER_GLOBAL_CATEGORIES_TO_DISPLAY = [];
+
 /* Global Variables */ 
 var global_isCATEGORY_LI_LOADED = false;
-var categories_to_display = [];
 
 function dropdown() {
     $("ul.dropdown-menu input[type=checkbox]").each(function() {
@@ -15,12 +17,6 @@ function dropdown() {
         });
     });
 
-    $("ul.dropdown-menu li").each(function() {
-        $(this).on('click', function() {
-        	console.log('click');
-        });
-    });
-
     $('#category-dropdown-container').on('click', function() {
     	loadListItems();
     });
@@ -32,9 +28,6 @@ function loadListItems() {
 	
 		// Read in Categories from csv
 		SUPER_GLOBAL_CATEGORY_NAMES.forEach(function(name) {
-			
-			// Add to List of Categories to Display (used for updating)
-			categories_to_display.push(name);
 
 			$('ul.dropdown-menu')
 			.append('<li class="category-li-container">'
@@ -50,13 +43,13 @@ function loadListItems() {
 
 				if (this.checked) {
 					// add website to list
-					categories_to_display.push(name);
+					SUPER_GLOBAL_CATEGORIES_TO_DISPLAY.push(name);
 				} else {
 					// remove website from list
-					categories_to_display.splice(categories_to_display.indexOf(name), 1);
+					SUPER_GLOBAL_CATEGORIES_TO_DISPLAY.splice(SUPER_GLOBAL_CATEGORIES_TO_DISPLAY.indexOf(name), 1);
 				}
-				updateBarChartByCategory(categories_to_display);
-				updateScatterPlotByCategory(categories_to_display);
+				updateBarChart();
+				updateScatterPlot();
 			});
 		});
 

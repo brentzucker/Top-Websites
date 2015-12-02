@@ -70,7 +70,12 @@ function barChart() {
 		});
 
 		// Save category names in Super Global variable to pass into dropdown 
-		data.forEach(function(d) { SUPER_GLOBAL_CATEGORY_NAMES.push(d.key); });
+		data.forEach(function(d) { 
+			SUPER_GLOBAL_CATEGORY_NAMES.push(d.key);  
+
+			// Add to List of Categories to Display (used for updating)
+			SUPER_GLOBAL_CATEGORIES_TO_DISPLAY.push(d.key);
+		});
 		
 		for(i = 0;i < data.length;i++){
 			clicked[data[i].key] = 0;
@@ -128,13 +133,13 @@ function barChart() {
 	}
 }
 
-function updateBarChart(min_rank, max_rank) {
+function updateBarChart() {
 
 	// Use Global Data
     var data = global_dataBarChart;
 
 	var data = data.filter(function(d) {
-  		return (d.rank >= min_rank) && (d.rank <= max_rank);
+  		return (d.rank >= MIN_RANK) && (d.rank <= MAX_RANK) && (SUPER_GLOBAL_CATEGORIES_TO_DISPLAY.indexOf(d.main_category) > -1);
   	});
 
   	var data = d3.nest()
@@ -219,96 +224,187 @@ function updateBarChart(min_rank, max_rank) {
       });
 }
 
-function updateBarChartByCategory(categories_to_display) {
+// function updateBarChart(min_rank, max_rank) {
 
-	// Use Global Data
-    var data = global_dataBarChart;
+// 	// Use Global Data
+//     var data = global_dataBarChart;
 
-  	var data = d3.nest()
-		.key(function(d) { return d.main_category; })
-		.rollup(function(leaves) { return leaves.length; })
-		.entries(data);
+// 	var data = data.filter(function(d) {
+//   		return (d.rank >= min_rank) && (d.rank <= max_rank);
+//   	});
 
-	data.sort(function(a, b) {
-		return b.values - a.values;
-	});
+//   	var data = d3.nest()
+// 		.key(function(d) { return d.main_category; })
+// 		.rollup(function(leaves) { return leaves.length; })
+// 		.entries(data);
 
-	var data = data.filter(function(d) {
-  		return (categories_to_display.indexOf(d.key) > -1);
-  	});
+// 	data.sort(function(a, b) {
+// 		return b.values - a.values;
+// 	});
 
-	// Scale the range of the data again 
-	yScaleBar.domain(data.map(function(d) { return d.key; }));
-  	xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
+// 	// Scale the range of the data again 
+// 	yScaleBar.domain(data.map(function(d) { return d.key; }));
+//   	xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
 
 
-    // Select the section we want to apply our changes to
-    var svg = d3.select("#bar-chart");
+//     // Select the section we want to apply our changes to
+//     var svg = d3.select("#bar-chart");
 
-    /* Update Bar Chart Values */ 
+//     /* Update Bar Chart Values */ 
 
-	// Remove all bars
-	svg.selectAll(".bar")
-		.remove();
+// 	// Remove all bars
+// 	svg.selectAll(".bar")
+// 		.remove();
 	
-	// New value of bars
-	svg.selectAll(".bar")
-	  .data(data)
-	  .enter()
-	  .append("rect")
-	  .attr("class", function(d) { return 'bar ' + d.key; })
-	  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-	  .attr("y", function(d) { return yScaleBar(d.key); })
-	  // .attr("height", yScaleBar.rangeBand()/2)
-	  .attr("height", 4)
-	  .attr("x", function(d) { return 0; })
-	  .attr("width", function(d) { return xScaleBar(d.values); })
-	  .style("fill", function(d) { return color(cValue(d)); })
-      .text(function(d) { return d.key; })
-      .on("click", function(d){
-		filterPlot(d);
-	  });
+// 	// New value of bars
+// 	svg.selectAll(".bar")
+// 	  .data(data)
+// 	  .enter()
+// 	  .append("rect")
+// 	  .attr("class", function(d) { return 'bar ' + d.key; })
+// 	  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+// 	  .attr("y", function(d) { return yScaleBar(d.key); })
+// 	  // .attr("height", yScaleBar.rangeBand()/2)
+// 	  .attr("height", 4)
+// 	  .attr("x", function(d) { return 0; })
+// 	  .attr("width", function(d) { return xScaleBar(d.values); })
+// 	  .style("fill", function(d) { return color(cValue(d)); })
+//       .text(function(d) { return d.key; })
+//       .on("click", function(d){
+// 		filterPlot(d);
+// 	  });
 	   
-	svg.selectAll(".bar")
-	  .filter( function(d){
-	  	return (clicked[d.key]);
-	  })
-	  .attr("style", "outline: thin solid black;")
-	  .style("fill", function(d) { return color(cValue(d)); })
-        .text(function(d) { return d.key; });
+// 	svg.selectAll(".bar")
+// 	  .filter( function(d){
+// 	  	return (clicked[d.key]);
+// 	  })
+// 	  .attr("style", "outline: thin solid black;")
+// 	  .style("fill", function(d) { return color(cValue(d)); })
+//         .text(function(d) { return d.key; });
 	
     
-    /* Update Axis */
-    svg.select(".x.axis")
-    	.transition() // change the x axis
-        .duration(750)
-        .call(xAxisBar);
-    svg.select(".y.axis")
-    	.transition() // change the y axis
-        .duration(750)
-        .call(yAxisBar);
+//     /* Update Axis */
+//     svg.select(".x.axis")
+//     	.transition() // change the x axis
+//         .duration(750)
+//         .call(xAxisBar);
+//     svg.select(".y.axis")
+//     	.transition() // change the y axis
+//         .duration(750)
+//         .call(yAxisBar);
 
-    /* Update Bar Chart Text */ 
-    svg.selectAll(".bartext")
-    	.remove();
+//     /* Update Bar Chart Text */ 
+//     svg.selectAll(".bartext")
+//     	.remove();
 
-    svg.selectAll(".bartext")
-      .data(data)
-      .enter()
-      .append("text")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-      .style("fill", "black")
-      .attr("class", "bartext")
-      .attr("x", function(d) {
-        return 3;
-      })
-      .attr("y", function(d) {
-        return yScaleBar(d.key) + 13;
-      })
-      .text(function(d) {
-        return d.key;
-      });
-}
+//     svg.selectAll(".bartext")
+//       .data(data)
+//       .enter()
+//       .append("text")
+//       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+//       .style("fill", "black")
+//       .attr("class", "bartext")
+//       .attr("x", function(d) {
+//         return 3;
+//       })
+//       .attr("y", function(d) {
+//         return yScaleBar(d.key) + 13;
+//       })
+//       .text(function(d) {
+//         return d.key;
+//       });
+// }
+
+// function updateBarChartByCategory(categories_to_display) {
+
+// 	// Use Global Data
+//     var data = global_dataBarChart;
+
+//   	var data = d3.nest()
+// 		.key(function(d) { return d.main_category; })
+// 		.rollup(function(leaves) { return leaves.length; })
+// 		.entries(data);
+
+// 	data.sort(function(a, b) {
+// 		return b.values - a.values;
+// 	});
+
+// 	var data = data.filter(function(d) {
+//   		return (categories_to_display.indexOf(d.key) > -1);
+//   	});
+
+// 	// Scale the range of the data again 
+// 	yScaleBar.domain(data.map(function(d) { return d.key; }));
+//   	xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
+
+
+//     // Select the section we want to apply our changes to
+//     var svg = d3.select("#bar-chart");
+
+//     /* Update Bar Chart Values */ 
+
+// 	// Remove all bars
+// 	svg.selectAll(".bar")
+// 		.remove();
+	
+// 	// New value of bars
+// 	svg.selectAll(".bar")
+// 	  .data(data)
+// 	  .enter()
+// 	  .append("rect")
+// 	  .attr("class", function(d) { return 'bar ' + d.key; })
+// 	  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+// 	  .attr("y", function(d) { return yScaleBar(d.key); })
+// 	  // .attr("height", yScaleBar.rangeBand()/2)
+// 	  .attr("height", 4)
+// 	  .attr("x", function(d) { return 0; })
+// 	  .attr("width", function(d) { return xScaleBar(d.values); })
+// 	  .style("fill", function(d) { return color(cValue(d)); })
+//       .text(function(d) { return d.key; })
+//       .on("click", function(d){
+// 		filterPlot(d);
+// 	  });
+	   
+// 	svg.selectAll(".bar")
+// 	  .filter( function(d){
+// 	  	return (clicked[d.key]);
+// 	  })
+// 	  .attr("style", "outline: thin solid black;")
+// 	  .style("fill", function(d) { return color(cValue(d)); })
+//         .text(function(d) { return d.key; });
+	
+    
+//     /* Update Axis */
+//     svg.select(".x.axis")
+//     	.transition() // change the x axis
+//         .duration(750)
+//         .call(xAxisBar);
+//     svg.select(".y.axis")
+//     	.transition() // change the y axis
+//         .duration(750)
+//         .call(yAxisBar);
+
+//     /* Update Bar Chart Text */ 
+//     svg.selectAll(".bartext")
+//     	.remove();
+
+//     svg.selectAll(".bartext")
+//       .data(data)
+//       .enter()
+//       .append("text")
+//       .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+//       .style("fill", "black")
+//       .attr("class", "bartext")
+//       .attr("x", function(d) {
+//         return 3;
+//       })
+//       .attr("y", function(d) {
+//         return yScaleBar(d.key) + 13;
+//       })
+//       .text(function(d) {
+//         return d.key;
+//       });
+// }
 
 // Link logic when bar is brushed
 function filterPlot(bar){

@@ -1,3 +1,7 @@
+/* Super Global Variables */
+MIN_RANK = 1;
+MAX_RANK = 1000;
+
 /* Search Functions */
 
 function searchBar() {
@@ -102,11 +106,21 @@ function drawSlider() {
       $('#left_corner').html(rank['min']);
       $('#right_corner').html(rank['max']);
 
+      /* Update Super Global Variables */
+      MIN_RANK = rank['min'];
+      MAX_RANK = rank['max'];
+
       // update scatter plot
-      updateScatterPlot(rank['min'], rank['max']);
+      updateScatterPlot();
 
       // update bar chart
-      updateBarChart(rank['min'], rank['max']);
+      updateBarChart();
+
+      // // update scatter plot
+      // updateScatterPlot(rank['min'], rank['max']);
+
+      // // update bar chart
+      // updateBarChart(rank['min'], rank['max']);
     }
   });
 
