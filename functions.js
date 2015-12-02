@@ -109,7 +109,7 @@ function drawSlider() {
       /* Update Super Global Variables */
       MIN_RANK = rank['min'];
       MAX_RANK = rank['max'];
-      
+
       // update scatter plot
       updateScatterPlot();
 

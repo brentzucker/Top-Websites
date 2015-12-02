@@ -70,6 +70,13 @@ body {
 	width: 880px;
 }
 
+#left_corner, #right_corner {
+	height: 14px!important;
+	width: 30px!important;
+	padding-bottom: 2px;
+	text-align: center;
+}
+
 /* Page Title */
 
 .page-title {
