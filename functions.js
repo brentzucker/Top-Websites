@@ -13,19 +13,24 @@ function searchBar() {
 
     data.forEach(function(d) {
       website_names.push(d.site);
+      // Organize categories
+      var category = d.category.split('-');
+      if (category[0].substring(category[0].length/2 + 1) === category[0].substring(0, category[0].length/2)) {
+        d.main_category = category[0].substring(category[0].length/2 + 1);
+      } else {
+        d.main_category = category[0];
+      }
+      d.sub_category = category[1];
       website_objects[d.site] = d;
     });
   });
 
   $('#search').on('change keyup paste', function() {
 
-    console.log(website_objects);
-
     var search_term = $('#search').val();
 
     // Is term in any website name?
     var website = getWebsiteName(website_names, search_term);
-    console.log(website);
 
     // Unhighlight old search result
     var previous_search_result = document.getElementsByClassName('search-result');
@@ -48,7 +53,7 @@ function searchBar() {
       // Blink for 2 seconds
       var BLINK_TIME = 2000;
       var BLINKS = 4;
-      var BLINK_SIZE = r * 4;
+      var BLINK_SIZE = r > 1 ? r * 4 : 4;
 
 
       for (var i = 0; i < BLINKS; i++) {
@@ -223,5 +228,9 @@ function numberWithCommas(x) {
 }
 
 function printCategory(category) {
-  return category.replace(/_/g, ' ');
+  if (category !== undefined) {
+    return category.replace(/_/g, ' ');
+  } else {
+    return category;
+  }
 }
