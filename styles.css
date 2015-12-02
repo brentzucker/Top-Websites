@@ -83,6 +83,11 @@ body {
 
 /* Category Dropdown */
 
+.input-group-btn button {
+	background-color: #e6e6e6;
+	border: 1px solid #adadad;
+}
+
 #category-dropdown-container {
 	position: absolute;
 	margin-top: 10px;
