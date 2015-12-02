@@ -139,7 +139,7 @@ function drawSlider() {
 /* Details on Demand Functions */
 
 function updateDetailsOnDemandForWebsite(d) {
-  $("#siteName").text(d.site);
+  $("#siteName").html(d.site + '<span class="small"> (click the dot to visit)</span>');
   $("#siteCategory").text(d.main_category);
   $("#siteRank").text(numberWithCommas(d.rank));
   $("#siteGlobalRank").text(numberWithCommas(d["global rank"]));
@@ -211,8 +211,8 @@ function updateDetailsOnDemandForAverage(data) {
   $("#siteName").text("All Websites");
   $("#siteViews").text(numberWithCommas(pageviews_avg));
   $("#siteCategory").text("N/A");
-  $("#siteRank").text("1-1000");
-  $("#siteGlobalRank").text("1-1000");
+  $("#siteRank").text("1-1,000");
+  $("#siteGlobalRank").text("1-1,000");
   $("#siteVisitors").text(numberWithCommas(visitors_avg));
   $("#siteTime").text(numberWithCommas(time_avg));
 }

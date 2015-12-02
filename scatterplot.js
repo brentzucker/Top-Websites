@@ -96,6 +96,16 @@ function scatterPlot() {
 	      .attr("cx", function(d) { return xAxisScatter(d.pageviews); })
 	      .attr("cy", function(d) { return yAxisScatter(d.unique_visitors); })
 	      .style("fill", function(d) { return color(cValue(d));})
+	      .on("click", function(d) {
+	      	var win = window.open('http://' + d.site, '_blank');
+	      	if(win){
+    			//Browser has allowed it to be opened
+    			win.focus();
+			} else {
+    			//Broswer has blocked it
+    			alert('To visit site, please allow popups.');
+			}
+	      })
 	      .on("mouseover", function(d) {
 			updateDetailsOnDemandForWebsite(d);
       	  })
