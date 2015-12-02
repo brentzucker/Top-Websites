@@ -55,6 +55,14 @@ body {
 
 /* Slider */
 
+#slider-label {
+	position: absolute;
+	margin-top: 550px;
+	margin-left: -5px;
+	font-weight: 500;
+
+}
+
 #slider-range {
 	position: absolute;
 	margin-top: 550px;
