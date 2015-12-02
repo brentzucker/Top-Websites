@@ -113,7 +113,31 @@ function barChart() {
 		  .style("fill", function(d) { return color(cValue(d)); })
 		  .text(function(d) { return d.key; })
 		  .on("click", function(d) {
+		  	
+		  	// Toggle Clicked class
+		  	d3.select(this)
+			  .classed("bar-clicked", function (d, i) {
+			    return !d3.select(this).classed("bar-clicked");
+			  });
+
+			filterPlot(d); // cancel out what mouseover did
 		  	filterPlot(d);
+		  })
+		  .on("mouseover", function(d) {
+		  	
+		  	// If not clicked do the mouseover function
+		  	if (!d3.select(this).classed("bar-clicked")) {
+		  		filterPlot(d);
+		  		populateListForOneCategory(d.key);
+		  	}
+		  })
+		  .on("mouseout", function(d) {
+
+		  	// If not clicked do the mouseout function
+		  	if (!d3.select(this).classed("bar-clicked")) {
+		  		filterPlot(d);
+		  		populateList();
+		  	}
 		  });
 
 		graphBar.selectAll(".bartext")
@@ -186,15 +210,40 @@ function updateBarChart() {
 	  .attr("width", function(d) { return xScaleBar(d.values); })
 	  .style("fill", function(d) { return color(cValue(d)); })
       .text(function(d) { return d.key; })
-      .on("click", function(d){
-		filterPlot(d);
+      .on("click", function(d) {
+		  	
+	  	// Toggle Clicked class
+	  	d3.select(this)
+		  .classed("bar-clicked", function (d, i) {
+		    return !d3.select(this).classed("bar-clicked");
+		  });
+
+		filterPlot(d); // cancel out what mouseover did
+	  	filterPlot(d);
+	  })
+	  .on("mouseover", function(d) {
+	  	
+	  	// If not clicked do the mouseover function
+	  	if (!d3.select(this).classed("bar-clicked")) {
+	  		filterPlot(d);
+	  		populateListForOneCategory(d.key);
+	  	}
+	  })
+	  .on("mouseout", function(d) {
+
+	  	// If not clicked do the mouseout function
+	  	if (!d3.select(this).classed("bar-clicked")) {
+	  		filterPlot(d);
+	  		populateList();
+	  	}
 	  });
 	   
 	svg.selectAll(".bar")
 	  .filter( function(d){
 	  	return (clicked[d.key]);
 	  })
-	  .attr("style", "outline: thin solid black;")
+	  .style("stroke", "black")
+	  .style("stroke-width", 1)
 	  .style("fill", function(d) { return color(cValue(d)); })
         .text(function(d) { return d.key; });
 	
@@ -249,29 +298,30 @@ function filterPlot(bar, index){
 		.style("opacity", 1);	
 		
 		graphBar.selectAll(".bar")
-		.attr("style", "outline: none;")
+		.style("stroke-width", 0)
 		.style("fill", function(d) { return color(cValue(d)); })
 		  .text(function(d) { return d.key; });	
 	} else {
-		console.log("Bar not clicked");
+		// console.log("Bar not clicked");
 		// Fade out unclicked categories
 		for(var key in clicked){
 			clicked[key]=0;
 		}
 		clicked[bar.key]=1;
 		graphBar.selectAll(".bar")
-		.filter( function(d){
-			return (bar.key==d.key);
-		})
-		.attr("style", "outline: thin solid black;")
-		.style("fill", function(d) { return color(cValue(d)); })
-		  .text(function(d) { return d.key; });
+			.filter( function(d){
+				return (bar.key==d.key);
+			})
+			.style("stroke", "black")
+			.style("stroke-width", 1)
+			.style("fill", function(d) { return color(cValue(d)); })
+			  .text(function(d) { return d.key; });
 
 		graphBar.selectAll(".bar")
 		.filter( function(d){
 			return bar.key!=d.key;
 		})
-		.attr("style", "outline: none;")
+		.style("stroke-width", 0)
 		.style("fill", function(d) { return color(cValue(d)); })
 		  .text(function(d) { return d.key; });
 

@@ -96,7 +96,6 @@ function scatterPlot() {
 	      .attr("cx", function(d) { return xAxisScatter(d.pageviews); })
 	      .attr("cy", function(d) { return yAxisScatter(d.unique_visitors); })
 	      .style("fill", function(d) { return color(cValue(d));})
-	      .style("opacity", .25)
 	      .on("mouseover", function(d) {
 			updateDetailsOnDemandForWebsite(d);
       	  })

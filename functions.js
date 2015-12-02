@@ -171,6 +171,30 @@ function populateList() {
   });
 }
 
+function populateListForOneCategory(category_name) {
+
+  console.log(category_name);
+  var data = GLOBAL_DATA_SCATTERPLOT.filter(function(d) {
+      return (d.rank >= MIN_RANK) && (d.rank <= MAX_RANK) && (category_name === d.main_category);
+    });
+
+  // clear old list
+  $("#data-table").html('');
+  
+  data.forEach(function(d) {
+    $("#data-table")
+      .append('<tr>'
+                + '<td>' + d.site + '</td>'
+                + '<td>' + d.main_category + '</td>'
+                + '<td>' + numberWithCommas(d.rank) + '</td>'
+                + '<td>' + numberWithCommas(d['global rank']) + '</td>'
+                + '<td>' + numberWithCommas(d.unique_visitors) + '</td>'
+                + '<td>' + numberWithCommas(d.pageviews) + '</td>'
+                + '<td>' + numberWithCommas(d.time_on_site) + '</td>'
+              + '</tr>');
+  });
+}
+
 function updateDetailsOnDemandForAverage(data) {
 
   var pageviews_sum = 0;
