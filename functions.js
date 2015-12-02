@@ -47,7 +47,7 @@ function searchBar() {
 
       // Blink for 2 seconds
       var BLINK_TIME = 2000;
-      var BLINKS = 4; 
+      var BLINKS = 4;
       var BLINK_SIZE = r * 4;
 
 
@@ -172,13 +172,13 @@ function updateDetailsOnDemandForAverage(data) {
   var visitors_sum = 0;
   var time_sum = 0;
   for (var i = 0; i < data.length; i++) {
-    pageviews_sum += data[i].pageviews
-    visitors_sum += data[i].unique_visitors
-    time_sum += data[i].time_on_site
+    pageviews_sum += parseInt(data[i].pageviews);
+    visitors_sum += parseInt(data[i].unique_visitors);
+    time_sum += parseInt(data[i].time_on_site);
   }
   var pageviews_avg = parseInt(pageviews_sum / data.length);
   var visitors_avg = parseInt(visitors_sum / data.length);
-  var time_avg = time_sum / data.length;
+  var time_avg = parseInt(time_sum / data.length);
 
   $("#siteName").text("All Websites");
   $("#siteViews").text(pageviews_avg);
