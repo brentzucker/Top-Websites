@@ -32,7 +32,7 @@ function loadListItems() {
 			$('ul.dropdown-menu')
 			.append('<li class="category-li-container">'
 						+ '<input id="' + name + '-checkbox" type="checkbox">'
-						+ '<label class="category-li-text" for="' + name +'-checkbox">' + name + '</label>'
+						+ '<label class="category-li-text" for="' + name +'-checkbox">' + printCategory(name) + '</label>'
 					+ '</li>');
 
 			// Initalize all checkboxes as checked

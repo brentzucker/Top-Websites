@@ -117,7 +117,7 @@ function barChart() {
 		  .attr("x", function(d) { return 0; })
 		  .attr("width", function(d) { return xScaleBar(d.values); })
 		  .style("fill", function(d) { return color(cValue(d)); })
-		  .text(function(d) { return d.key; })
+		  .text(function(d) { return printCategory(d.key); })
 		  .on("click", function(d) {
 		  	
 		  	// Toggle Clicked class
@@ -154,7 +154,7 @@ function barChart() {
 				graphBar.selectAll(".bar")
 				.style("stroke-width", 0)
 				.style("fill", function(d) { return color(cValue(d)); })
-				  .text(function(d) { return d.key; });
+				  .text(function(d) { return printCategory(d.key); });
 		  		populateList();
 		  	}
 		  });
@@ -171,7 +171,7 @@ function barChart() {
 		    return yScaleBar(d.key) + 15;
 		  })
 		  .text(function(d) {
-		    return d.key;
+		    return printCategory(d.key);
 		  })
 		  .style("fill", "black");
 
@@ -228,7 +228,7 @@ function updateBarChart() {
 	  .attr("x", function(d) { return 0; })
 	  .attr("width", function(d) { return xScaleBar(d.values); })
 	  .style("fill", function(d) { return color(cValue(d)); })
-      .text(function(d) { return d.key; })
+      .text(function(d) { return printCategory(d.key); })
       .on("click", function(d) {
 		  	
 	  	// Toggle Clicked class
@@ -265,7 +265,7 @@ function updateBarChart() {
 			graphBar.selectAll(".bar")
 			.style("stroke-width", 0)
 			.style("fill", function(d) { return color(cValue(d)); })
-		    .text(function(d) { return d.key; });
+		    .text(function(d) { return printCategory(d.key); });
 	  		populateList();
 	  	}
 	  });
@@ -277,7 +277,7 @@ function updateBarChart() {
 	  .style("stroke", "black")
 	  .style("stroke-width", 1)
 	  .style("fill", function(d) { return color(cValue(d)); })
-        .text(function(d) { return d.key; });
+        .text(function(d) { return printCategory(d.key); });
 	
     
     /* Update Axis */
@@ -308,7 +308,7 @@ function updateBarChart() {
         return yScaleBar(d.key) + 15;
       })
       .text(function(d) {
-        return d.key;
+        return printCategory(d.key);
       });
 }
 
@@ -330,7 +330,7 @@ function hoverPlot(bar){
 			.style("stroke", "black")
 			.style("stroke-width", 1)
 			.style("fill", function(d) { return color(cValue(d)); })
-			  .text(function(d) { return d.key; });
+			  .text(function(d) { return printCategory(d.key); });
 
 		graphBar.selectAll(".bar")
 		.filter( function(d){
@@ -338,7 +338,7 @@ function hoverPlot(bar){
 		})
 		.style("stroke-width", 0)
 		.style("fill", function(d) { return color(cValue(d)); })
-		  .text(function(d) { return d.key; });
+		  .text(function(d) { return printCategory(d.key); });
 
 		graphScatter.selectAll(".dot")
 		.filter( function (d) {
@@ -382,7 +382,7 @@ function filterPlot(bar, index){
 		graphBar.selectAll(".bar")
 		.style("stroke-width", 0)
 		.style("fill", function(d) { return color(cValue(d)); })
-		  .text(function(d) { return d.key; });	
+		  .text(function(d) { return (d.key); });	
 	} else {
 		// console.log("Bar not clicked");
 		// Fade out unclicked categories
@@ -397,7 +397,7 @@ function filterPlot(bar, index){
 			.style("stroke", "black")
 			.style("stroke-width", 1)
 			.style("fill", function(d) { return color(cValue(d)); })
-			  .text(function(d) { return d.key; });
+			  .text(function(d) { return printCategory(d.key); });
 
 		graphBar.selectAll(".bar")
 		.filter( function(d){
@@ -405,7 +405,7 @@ function filterPlot(bar, index){
 		})
 		.style("stroke-width", 0)
 		.style("fill", function(d) { return color(cValue(d)); })
-		  .text(function(d) { return d.key; });
+		  .text(function(d) { return printCategory(d.key); });
 
 		graphScatter.selectAll(".dot")
 		.filter( function (d) {

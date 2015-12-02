@@ -140,7 +140,7 @@ function drawSlider() {
 
 function updateDetailsOnDemandForWebsite(d) {
   $("#siteName").html(d.site + '<span class="small"> (click the dot to visit)</span>');
-  $("#siteCategory").text(d.main_category);
+  $("#siteCategory").text(printCategory(d.main_category));
   $("#siteRank").text(numberWithCommas(d.rank));
   $("#siteGlobalRank").text(numberWithCommas(d["global rank"]));
   $("#siteVisitors").text(numberWithCommas(d.unique_visitors));
@@ -161,7 +161,7 @@ function populateList() {
     $("#data-table")
       .append('<tr>'
                 + '<td>' + d.site + '</td>'
-                + '<td>' + d.main_category + '</td>'
+                + '<td>' + printCategory(d.main_category) + '</td>'
                 + '<td>' + numberWithCommas(d.rank) + '</td>'
                 + '<td>' + numberWithCommas(d['global rank']) + '</td>'
                 + '<td>' + numberWithCommas(d.unique_visitors) + '</td>'
@@ -184,7 +184,7 @@ function populateListForOneCategory(category_name) {
     $("#data-table")
       .append('<tr>'
                 + '<td>' + d.site + '</td>'
-                + '<td>' + d.main_category + '</td>'
+                + '<td>' + printCategory(d.main_category) + '</td>'
                 + '<td>' + numberWithCommas(d.rank) + '</td>'
                 + '<td>' + numberWithCommas(d['global rank']) + '</td>'
                 + '<td>' + numberWithCommas(d.unique_visitors) + '</td>'
@@ -220,4 +220,8 @@ function updateDetailsOnDemandForAverage(data) {
 // http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function printCategory(category) {
+  return category.replace(/_/g, ' ');
 }
