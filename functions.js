@@ -143,11 +143,11 @@ function populateList(data){
       .append('<tr>'
                 + '<td>' + data[i].site + '</td>'
                 + '<td>' + data[i].main_category + '</td>'
-                + '<td>' + data[i].rank + '</td>'
-                + '<td>' + data[i]['global rank'] + '</td>'
-                + '<td>' + data[i].unique_visitors + '</td>'
-                + '<td>' + data[i].pageviews + '</td>'
-                + '<td>' + data[i].time_on_site + '</td>'
+                + '<td>' + numberWithCommas(data[i].rank) + '</td>'
+                + '<td>' + numberWithCommas(data[i]['global rank']) + '</td>'
+                + '<td>' + numberWithCommas(data[i].unique_visitors) + '</td>'
+                + '<td>' + numberWithCommas(data[i].pageviews) + '</td>'
+                + '<td>' + numberWithCommas(data[i].time_on_site) + '</td>'
               + '</tr>');
   }
 }
