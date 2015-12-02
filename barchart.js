@@ -94,7 +94,13 @@ function barChart() {
 		graphBar.append("g")
 		  .attr("class", "x axis")
 		  .attr("transform", "translate(0," + height + ")")
-		  .call(xAxisBar);
+		  .call(xAxisBar)
+		  .append("text")
+	      .attr("class", "label")
+	      .attr("x", width)
+	      .attr("y", -6)
+	      .style("text-anchor", "end")
+	      .text("Number of Websites");;
 
 		graphBar.append("g")
 		  .attr("class", "y axis")
