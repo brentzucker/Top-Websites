@@ -173,7 +173,6 @@ function populateList() {
 
 function populateListForOneCategory(category_name) {
 
-  console.log(category_name);
   var data = GLOBAL_DATA_SCATTERPLOT.filter(function(d) {
       return (d.rank >= MIN_RANK) && (d.rank <= MAX_RANK) && (category_name === d.main_category);
     });

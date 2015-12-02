@@ -121,27 +121,40 @@ function barChart() {
 		  .on("click", function(d) {
 		  	
 		  	// Toggle Clicked class
-		  	d3.select(this)
+/*		  	d3.select(this)
 			  .classed("bar-clicked", function (d, i) {
 			    return !d3.select(this).classed("bar-clicked");
 			  });
-
-			filterPlot(d); // cancel out what mouseover did
+*/			
+			//filterPlot(d); // cancel out what mouseover did
 		  	filterPlot(d);
 		  })
 		  .on("mouseover", function(d) {
 		  	
 		  	// If not clicked do the mouseover function
-		  	if (!d3.select(this).classed("bar-clicked")) {
-		  		filterPlot(d);
+//		  	if (!d3.select(this).classed("bar-clicked")) {
+			//if(!clicked[d.key]){
+		  		hoverPlot(d);
 		  		populateListForOneCategory(d.key);
-		  	}
+		  	//}
 		  })
 		  .on("mouseout", function(d) {
 
 		  	// If not clicked do the mouseout function
-		  	if (!d3.select(this).classed("bar-clicked")) {
-		  		filterPlot(d);
+//		  	if (!d3.select(this).classed("bar-clicked")) {
+			if(!clicked[d.key]){
+				var graphScatter = d3.select("#scatter-plot");
+	
+		  		graphScatter.selectAll(".dot")
+				.transition()
+				.delay(100)
+				.duration(400)
+				.style("opacity", 1);	
+				
+				graphBar.selectAll(".bar")
+				.style("stroke-width", 0)
+				.style("fill", function(d) { return color(cValue(d)); })
+				  .text(function(d) { return d.key; });
 		  		populateList();
 		  	}
 		  });
@@ -171,7 +184,7 @@ function barChart() {
 }
 
 function updateBarChart() {
-
+	console.log("Updating bar chart");
 	// Use Global Data
     var data = global_dataBarChart;
 
@@ -219,27 +232,40 @@ function updateBarChart() {
       .on("click", function(d) {
 		  	
 	  	// Toggle Clicked class
-	  	d3.select(this)
+/*	  	d3.select(this)
 		  .classed("bar-clicked", function (d, i) {
 		    return !d3.select(this).classed("bar-clicked");
 		  });
-
-		filterPlot(d); // cancel out what mouseover did
+*/		
+//		filterPlot(d); // cancel out what mouseover did
 	  	filterPlot(d);
 	  })
 	  .on("mouseover", function(d) {
 	  	
 	  	// If not clicked do the mouseover function
-	  	if (!d3.select(this).classed("bar-clicked")) {
-	  		filterPlot(d);
+	  //	if (!d3.select(this).classed("bar-clicked")) {
+	  		hoverPlot(d);
 	  		populateListForOneCategory(d.key);
-	  	}
+	  //	}
 	  })
 	  .on("mouseout", function(d) {
 
 	  	// If not clicked do the mouseout function
-	  	if (!d3.select(this).classed("bar-clicked")) {
-	  		filterPlot(d);
+	  	//if (!d3.select(this).classed("bar-clicked")) {
+	  	if(!clicked[d.key]){
+			var graphScatter = d3.select("#scatter-plot");
+			var graphBar = d3.select("#bar-chart");
+			console.log("In update unclicked mouseout");
+			graphScatter.selectAll(".dot")
+			.transition()
+			.delay(100)
+			.duration(400)
+			.style("opacity", 1);	
+			
+			graphBar.selectAll(".bar")
+			.style("stroke-width", 0)
+			.style("fill", function(d) { return color(cValue(d)); })
+		    .text(function(d) { return d.key; });
 	  		populateList();
 	  	}
 	  });
@@ -285,6 +311,56 @@ function updateBarChart() {
         return d.key;
       });
 }
+
+function hoverPlot(bar){
+	var graphScatter = d3.select("#scatter-plot");
+	var graphBar = d3.select("#bar-chart");
+	
+	// If bar already clicked, do nothing
+	if(clicked[bar.key]){
+		return;
+	} else {
+		for (var key in clicked){
+			clicked[key] = 0;
+		}
+		graphBar.selectAll(".bar")
+			.filter( function(d){
+				return (bar.key==d.key);
+			})
+			.style("stroke", "black")
+			.style("stroke-width", 1)
+			.style("fill", function(d) { return color(cValue(d)); })
+			  .text(function(d) { return d.key; });
+
+		graphBar.selectAll(".bar")
+		.filter( function(d){
+			return bar.key!=d.key;
+		})
+		.style("stroke-width", 0)
+		.style("fill", function(d) { return color(cValue(d)); })
+		  .text(function(d) { return d.key; });
+
+		graphScatter.selectAll(".dot")
+		.filter( function (d) {
+		  return (bar.key != d.main_category);
+		})
+		.transition()
+		.delay(100)
+		.duration(400)
+		.style("opacity", .25);
+
+		// Fade in clicked category
+		graphScatter.selectAll(".dot")
+		.filter( function (d) {
+		  return (bar.key == d.main_category);
+		})
+		.transition()
+		.delay(100)
+		.duration(400)
+		.style("opacity", 1);
+	}
+}
+		
 
 // Link logic when bar is brushed
 function filterPlot(bar, index){
