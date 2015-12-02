@@ -3,6 +3,7 @@ SUPER_GLOBAL_CATEGORY_NAMES = [];
 
 /* Global Variables */
 var clicked = {};
+var numCategories;
 var global_dataBarChart = [];
 
 var margin = {top: 20, right: 80, bottom: 30, left: 10},
@@ -64,7 +65,10 @@ function barChart() {
 			.key(function(d) { return d.main_category; })
 			.rollup(function(leaves) { return leaves.length; })
 			.entries(data);
-
+		
+		// Set numCategories for filterPlot function
+		numCategories = data.length;
+		
 		data.sort(function(a, b) {
 			return b.values - a.values;
 		});
@@ -228,49 +232,66 @@ function updateBarChart() {
 }
 
 // Link logic when bar is brushed
-function filterPlot(bar){
-	// If category not clicked, set clicked
-	if(!(clicked[bar.key])){
-		  clicked[bar.key] = 1;
-	} else {
-	  clicked[bar.key] = 0;
-	}
-
-	// Fade out unclicked categories
+function filterPlot(bar, index){
 	var graphScatter = d3.select("#scatter-plot");
 	var graphBar = d3.select("#bar-chart");
-	graphBar.selectAll(".bar")
-	.filter( function(d){
-		return (clicked[d.key]);
-	})
-	.attr("style", "outline: thin solid black;")
-	.style("fill", function(d) { return color(cValue(d)); })
-	  .text(function(d) { return d.key; });
+	// If unclicking category, refocus all nodes
+	if(clicked[bar.key]){
+		// Set all bars unclicked
+		for(key in clicked){
+			clicked[key]=0;
+		}
+	
+		graphScatter.selectAll(".dot")
+		.transition()
+		.delay(100)
+		.duration(400)
+		.style("opacity", 1);	
+		
+		graphBar.selectAll(".bar")
+		.attr("style", "outline: none;")
+		.style("fill", function(d) { return color(cValue(d)); })
+		  .text(function(d) { return d.key; });	
+	} else {
+		console.log("Bar not clicked");
+		// Fade out unclicked categories
+		for(var key in clicked){
+			clicked[key]=0;
+		}
+		clicked[bar.key]=1;
+		graphBar.selectAll(".bar")
+		.filter( function(d){
+			return (bar.key==d.key);
+		})
+		.attr("style", "outline: thin solid black;")
+		.style("fill", function(d) { return color(cValue(d)); })
+		  .text(function(d) { return d.key; });
 
-	graphBar.selectAll(".bar")
-	.filter( function(d){
-		return (!clicked[d.key]);
-	})
-	.attr("style", "outline: none;")
-	.style("fill", function(d) { return color(cValue(d)); })
-	  .text(function(d) { return d.key; });
+		graphBar.selectAll(".bar")
+		.filter( function(d){
+			return bar.key!=d.key;
+		})
+		.attr("style", "outline: none;")
+		.style("fill", function(d) { return color(cValue(d)); })
+		  .text(function(d) { return d.key; });
 
-	graphScatter.selectAll(".dot")
-	.filter( function (d) {
-	  return (!clicked[d.main_category]);
-	})
-	.transition()
-	.delay(100)
-	.duration(400)
-	.style("opacity", .25);
+		graphScatter.selectAll(".dot")
+		.filter( function (d) {
+		  return (bar.key != d.main_category);
+		})
+		.transition()
+		.delay(100)
+		.duration(400)
+		.style("opacity", .25);
 
-	// Fade in clicked category
-	graphScatter.selectAll(".dot")
-	.filter( function (d) {
-	  return (clicked[d.main_category]);
-	})
-	.transition()
-	.delay(100)
-	.duration(400)
-	.style("opacity", 1);
+		// Fade in clicked category
+		graphScatter.selectAll(".dot")
+		.filter( function (d) {
+		  return (bar.key == d.main_category);
+		})
+		.transition()
+		.delay(100)
+		.duration(400)
+		.style("opacity", 1);
+	}
 }
