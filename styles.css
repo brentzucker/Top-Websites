@@ -1,3 +1,4 @@
+
 /* General Styles */
 
 body {
@@ -41,7 +42,7 @@ body {
 }
 
 .bar {
-  /*fill: steelblue;*/
+  cursor: pointer;
 }
 
 .bar:hover {

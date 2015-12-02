@@ -103,7 +103,7 @@ function barChart() {
 		  .attr("class", function(d) { return 'bar ' + d.key; })
 		  .attr("y", function(d) { return yScaleBar(d.key); })
 		  // .attr("height", yScaleBar.rangeBand()/2)
-	  	  .attr("height", 4)
+	  	  .attr("height", 6)
 		  .attr("x", function(d) { return 0; })
 		  .attr("width", function(d) { return xScaleBar(d.values); })
 		  .style("fill", function(d) { return color(cValue(d)); })
@@ -121,7 +121,7 @@ function barChart() {
 		    return 3;
 		  })
 		  .attr("y", function(d) {
-		    return yScaleBar(d.key) + 13;
+		    return yScaleBar(d.key) + 15;
 		  })
 		  .text(function(d) {
 		    return d.key;
@@ -177,7 +177,7 @@ function updateBarChart() {
 	  .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 	  .attr("y", function(d) { return yScaleBar(d.key); })
 	  // .attr("height", yScaleBar.rangeBand()/2)
-	  .attr("height", 4)
+	  .attr("height", 6)
 	  .attr("x", function(d) { return 0; })
 	  .attr("width", function(d) { return xScaleBar(d.values); })
 	  .style("fill", function(d) { return color(cValue(d)); })
@@ -220,7 +220,7 @@ function updateBarChart() {
         return 3;
       })
       .attr("y", function(d) {
-        return yScaleBar(d.key) + 13;
+        return yScaleBar(d.key) + 15;
       })
       .text(function(d) {
         return d.key;

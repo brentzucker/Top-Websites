@@ -1,3 +1,7 @@
+/* Super Global Variables */
+MIN_RANK = 1;
+MAX_RANK = 1000;
+
 /* Search Functions */
 
 function searchBar() {
@@ -102,6 +106,10 @@ function drawSlider() {
       $('#left_corner').html(rank['min']);
       $('#right_corner').html(rank['max']);
 
+      /* Update Super Global Variables */
+      MIN_RANK = rank['min'];
+      MAX_RANK = rank['max'];
+      
       // update scatter plot
       updateScatterPlot();
 
