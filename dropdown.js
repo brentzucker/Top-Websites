@@ -50,6 +50,7 @@ function loadListItems() {
 				}
 				updateBarChart();
 				updateScatterPlot();
+				populateList();
 			});
 		});
 

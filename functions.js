@@ -116,11 +116,8 @@ function drawSlider() {
       // update bar chart
       updateBarChart();
 
-      // // update scatter plot
-      // updateScatterPlot(rank['min'], rank['max']);
-
-      // // update bar chart
-      // updateBarChart(rank['min'], rank['max']);
+      // update data table
+      populateList();
     }
   });
 
@@ -151,19 +148,27 @@ function updateDetailsOnDemandForWebsite(d) {
   $("#siteTime").text(d.time_on_site);
 }
 
-function populateList(data){
-  for(var i = 0; i < data.length; i++){
+function populateList() {
+
+  var data = GLOBAL_DATA_SCATTERPLOT.filter(function(d) {
+      return (d.rank >= MIN_RANK) && (d.rank <= MAX_RANK) && (SUPER_GLOBAL_CATEGORIES_TO_DISPLAY.indexOf(d.main_category) > -1);
+    });
+
+  // clear old list
+  $("#data-table").html('');
+  
+  data.forEach(function(d) {
     $("#data-table")
       .append('<tr>'
-                + '<td>' + data[i].site + '</td>'
-                + '<td>' + data[i].main_category + '</td>'
-                + '<td>' + data[i].rank + '</td>'
-                + '<td>' + data[i]['global rank'] + '</td>'
-                + '<td>' + data[i].unique_visitors + '</td>'
-                + '<td>' + data[i].pageviews + '</td>'
-                + '<td>' + data[i].time_on_site + '</td>'
+                + '<td>' + d.site + '</td>'
+                + '<td>' + d.main_category + '</td>'
+                + '<td>' + d.rank + '</td>'
+                + '<td>' + d['global rank'] + '</td>'
+                + '<td>' + d.unique_visitors + '</td>'
+                + '<td>' + d.pageviews + '</td>'
+                + '<td>' + d.time_on_site + '</td>'
               + '</tr>');
-  }
+  });
 }
 
 function updateDetailsOnDemandForAverage(data) {

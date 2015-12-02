@@ -15,4 +15,7 @@ $(function() {
 	scatterPlot();
 	barChart(1, 1000);
 	drawSlider();
+
+  // Populate the data table
+  populateList();
 });
