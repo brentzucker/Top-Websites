@@ -1,7 +1,3 @@
-/* Super Global Variables */
-MIN_RANK = 1;
-MAX_RANK = 1000;
-
 /* Search Functions */
 
 function searchBar() {
@@ -106,21 +102,11 @@ function drawSlider() {
       $('#left_corner').html(rank['min']);
       $('#right_corner').html(rank['max']);
 
-      /* Update Super Global Variables */
-      MIN_RANK = rank['min'];
-      MAX_RANK = rank['max'];
-
       // update scatter plot
-      updateScatterPlot();
+      updateScatterPlot(rank['min'], rank['max']);
 
       // update bar chart
-      updateBarChart();
-
-      // // update scatter plot
-      // updateScatterPlot(rank['min'], rank['max']);
-
-      // // update bar chart
-      // updateBarChart(rank['min'], rank['max']);
+      updateBarChart(rank['min'], rank['max']);
     }
   });
 
@@ -144,11 +130,11 @@ function drawSlider() {
 function updateDetailsOnDemandForWebsite(d) {
   $("#siteName").text(d.site);
   $("#siteCategory").text(d.main_category);
-  $("#siteRank").text(d.rank);
-  $("#siteGlobalRank").text(d["global rank"]);
-  $("#siteVisitors").text(d.unique_visitors);
-  $("#siteViews").text(d.pageviews);
-  $("#siteTime").text(d.time_on_site);
+  $("#siteRank").text(numberWithCommas(d.rank));
+  $("#siteGlobalRank").text(numberWithCommas(d["global rank"]));
+  $("#siteVisitors").text(numberWithCommas(d.unique_visitors));
+  $("#siteViews").text(numberWithCommas(d.pageviews));
+  $("#siteTime").text(numberWithCommas(d.time_on_site));
 }
 
 function populateList(data){
@@ -181,10 +167,15 @@ function updateDetailsOnDemandForAverage(data) {
   var time_avg = parseInt(time_sum / data.length);
 
   $("#siteName").text("All Websites");
-  $("#siteViews").text(pageviews_avg);
+  $("#siteViews").text(numberWithCommas(pageviews_avg));
   $("#siteCategory").text("N/A");
   $("#siteRank").text("1-1000");
   $("#siteGlobalRank").text("1-1000");
-  $("#siteVisitors").text(visitors_avg);
-  $("#siteTime").text(time_avg);
+  $("#siteVisitors").text(numberWithCommas(visitors_avg));
+  $("#siteTime").text(numberWithCommas(time_avg));
+}
+
+// http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
