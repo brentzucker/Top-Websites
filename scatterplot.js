@@ -40,7 +40,7 @@ function scatterPlot() {
 	  if (error) throw error;
 
 	  data.forEach(function(d) {
-	    
+
 	    d.unique_visitors = +d.unique_visitors;
 	    d.pageviews = +d.pageviews;
 
@@ -172,7 +172,7 @@ function updateScatterPlot() {
         .attr("r", function(d) { return Math.abs(rScatter(d.time_on_site)) > 5 ? 5 : rScatter(d.time_on_site) < 0 ? -rScatter(d.time_on_site) : rScatter(d.time_on_site); })
       	.attr("cx", function(d) { return xAxisScatter(d.pageviews); })
       	.attr("cy", function(d) { return yAxisScatter(d.unique_visitors); });
-    
+
     // Update axises
     svg.select(".x.axis") // change the x axis
     	.transition()

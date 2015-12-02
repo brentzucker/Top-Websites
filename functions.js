@@ -1,7 +1,3 @@
-/* Super Global Variables */
-MIN_RANK = 1;
-MAX_RANK = 1000;
-
 /* Search Functions */
 
 function searchBar() {
@@ -47,7 +43,7 @@ function searchBar() {
 
       // Blink for 2 seconds
       var BLINK_TIME = 2000;
-      var BLINKS = 4; 
+      var BLINKS = 4;
       var BLINK_SIZE = r * 4;
 
 
@@ -106,10 +102,6 @@ function drawSlider() {
       $('#left_corner').html(rank['min']);
       $('#right_corner').html(rank['max']);
 
-      /* Update Super Global Variables */
-      MIN_RANK = rank['min'];
-      MAX_RANK = rank['max'];
-
       // update scatter plot
       updateScatterPlot();
 
@@ -141,11 +133,11 @@ function drawSlider() {
 function updateDetailsOnDemandForWebsite(d) {
   $("#siteName").text(d.site);
   $("#siteCategory").text(d.main_category);
-  $("#siteRank").text(d.rank);
-  $("#siteGlobalRank").text(d["global rank"]);
-  $("#siteVisitors").text(d.unique_visitors);
-  $("#siteViews").text(d.pageviews);
-  $("#siteTime").text(d.time_on_site);
+  $("#siteRank").text(numberWithCommas(d.rank));
+  $("#siteGlobalRank").text(numberWithCommas(d["global rank"]));
+  $("#siteVisitors").text(numberWithCommas(d.unique_visitors));
+  $("#siteViews").text(numberWithCommas(d.pageviews));
+  $("#siteTime").text(numberWithCommas(d.time_on_site));
 }
 
 function populateList() {
@@ -162,11 +154,11 @@ function populateList() {
       .append('<tr>'
                 + '<td>' + d.site + '</td>'
                 + '<td>' + d.main_category + '</td>'
-                + '<td>' + d.rank + '</td>'
-                + '<td>' + d['global rank'] + '</td>'
-                + '<td>' + d.unique_visitors + '</td>'
-                + '<td>' + d.pageviews + '</td>'
-                + '<td>' + d.time_on_site + '</td>'
+                + '<td>' + numberWithCommas(d.rank) + '</td>'
+                + '<td>' + numberWithCommas(d['global rank']) + '</td>'
+                + '<td>' + numberWithCommas(d.unique_visitors) + '</td>'
+                + '<td>' + numberWithCommas(d.pageviews) + '</td>'
+                + '<td>' + numberWithCommas(d.time_on_site) + '</td>'
               + '</tr>');
   });
 }
@@ -177,19 +169,24 @@ function updateDetailsOnDemandForAverage(data) {
   var visitors_sum = 0;
   var time_sum = 0;
   for (var i = 0; i < data.length; i++) {
-    pageviews_sum += data[i].pageviews
-    visitors_sum += data[i].unique_visitors
-    time_sum += data[i].time_on_site
+    pageviews_sum += parseInt(data[i].pageviews);
+    visitors_sum += parseInt(data[i].unique_visitors);
+    time_sum += parseInt(data[i].time_on_site);
   }
   var pageviews_avg = parseInt(pageviews_sum / data.length);
   var visitors_avg = parseInt(visitors_sum / data.length);
-  var time_avg = time_sum / data.length;
+  var time_avg = parseInt(time_sum / data.length);
 
   $("#siteName").text("All Websites");
-  $("#siteViews").text(pageviews_avg);
+  $("#siteViews").text(numberWithCommas(pageviews_avg));
   $("#siteCategory").text("N/A");
   $("#siteRank").text("1-1000");
   $("#siteGlobalRank").text("1-1000");
-  $("#siteVisitors").text(visitors_avg);
-  $("#siteTime").text(time_avg);
+  $("#siteVisitors").text(numberWithCommas(visitors_avg));
+  $("#siteTime").text(numberWithCommas(time_avg));
+}
+
+// http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
