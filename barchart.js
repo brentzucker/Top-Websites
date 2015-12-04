@@ -1,3 +1,4 @@
+//General barchart template was followed but heavily modified with personalizations
 /* Super Global Variables */
 SUPER_GLOBAL_CATEGORY_NAMES = [];
 
@@ -10,7 +11,7 @@ var margin = {top: 20, right: 80, bottom: 30, left: 10},
     width = 960/2 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-	
+
 var xScaleBar = d3.scale.linear()
 	.range([0, width]);
 
@@ -65,17 +66,17 @@ function barChart() {
 			.key(function(d) { return d.main_category; })
 			.rollup(function(leaves) { return leaves.length; })
 			.entries(data);
-		
+
 		// Set numCategories for filterPlot function
 		numCategories = data.length;
-		
+
 		data.sort(function(a, b) {
 			return b.values - a.values;
 		});
 
-		// Save category names in Super Global variable to pass into dropdown 
-		data.forEach(function(d) { 
-			SUPER_GLOBAL_CATEGORY_NAMES.push(d.key);  
+		// Save category names in Super Global variable to pass into dropdown
+		data.forEach(function(d) {
+			SUPER_GLOBAL_CATEGORY_NAMES.push(d.key);
 
 			// Add to List of Categories to Display (used for updating)
 			SUPER_GLOBAL_CATEGORIES_TO_DISPLAY.push(d.key);
@@ -83,7 +84,7 @@ function barChart() {
 
 		// Populate the data table
 	  	populateList();
-		
+
 		for(i = 0;i < data.length;i++){
 			clicked[data[i].key] = 0;
 		}
@@ -119,18 +120,18 @@ function barChart() {
 		  .style("fill", function(d) { return color(cValue(d)); })
 		  .text(function(d) { return printCategory(d.key); })
 		  .on("click", function(d) {
-		  	
+
 		  	// Toggle Clicked class
 /*		  	d3.select(this)
 			  .classed("bar-clicked", function (d, i) {
 			    return !d3.select(this).classed("bar-clicked");
 			  });
-*/			
+*/
 			//filterPlot(d); // cancel out what mouseover did
 		  	filterPlot(d);
 		  })
 		  .on("mouseover", function(d) {
-		  	
+
 		  	// If not clicked do the mouseover function
 //		  	if (!d3.select(this).classed("bar-clicked")) {
 			//if(!clicked[d.key]){
@@ -144,13 +145,13 @@ function barChart() {
 //		  	if (!d3.select(this).classed("bar-clicked")) {
 			if(!clicked[d.key]){
 				var graphScatter = d3.select("#scatter-plot");
-	
+
 		  		graphScatter.selectAll(".dot")
 				.transition()
 				.delay(100)
 				.duration(400)
-				.style("opacity", 1);	
-				
+				.style("opacity", 1);
+
 				graphBar.selectAll(".bar")
 				.style("stroke-width", 0)
 				.style("fill", function(d) { return color(cValue(d)); })
@@ -201,7 +202,7 @@ function updateBarChart() {
 		return b.values - a.values;
 	});
 
-	// Scale the range of the data again 
+	// Scale the range of the data again
 	yScaleBar.domain(data.map(function(d) { return d.key; }));
   	xScaleBar.domain([0, d3.max(data, function(d) { return d.values; })]);
 
@@ -209,12 +210,12 @@ function updateBarChart() {
     // Select the section we want to apply our changes to
     var svg = d3.select("#bar-chart");
 
-    /* Update Bar Chart Values */ 
+    /* Update Bar Chart Values */
 
 	// Remove all bars
 	svg.selectAll(".bar")
 		.remove();
-	
+
 	// New value of bars
 	svg.selectAll(".bar")
 	  .data(data)
@@ -230,18 +231,18 @@ function updateBarChart() {
 	  .style("fill", function(d) { return color(cValue(d)); })
       .text(function(d) { return printCategory(d.key); })
       .on("click", function(d) {
-		  	
+
 	  	// Toggle Clicked class
 /*	  	d3.select(this)
 		  .classed("bar-clicked", function (d, i) {
 		    return !d3.select(this).classed("bar-clicked");
 		  });
-*/		
+*/
 //		filterPlot(d); // cancel out what mouseover did
 	  	filterPlot(d);
 	  })
 	  .on("mouseover", function(d) {
-	  	
+
 	  	// If not clicked do the mouseover function
 	  //	if (!d3.select(this).classed("bar-clicked")) {
 	  		hoverPlot(d);
@@ -260,8 +261,8 @@ function updateBarChart() {
 			.transition()
 			.delay(100)
 			.duration(400)
-			.style("opacity", 1);	
-			
+			.style("opacity", 1);
+
 			graphBar.selectAll(".bar")
 			.style("stroke-width", 0)
 			.style("fill", function(d) { return color(cValue(d)); })
@@ -269,7 +270,7 @@ function updateBarChart() {
 	  		populateList();
 	  	}
 	  });
-	   
+
 	svg.selectAll(".bar")
 	  .filter( function(d){
 	  	return (clicked[d.key]);
@@ -278,8 +279,8 @@ function updateBarChart() {
 	  .style("stroke-width", 1)
 	  .style("fill", function(d) { return color(cValue(d)); })
         .text(function(d) { return printCategory(d.key); });
-	
-    
+
+
     /* Update Axis */
     svg.select(".x.axis")
     	.transition() // change the x axis
@@ -290,7 +291,7 @@ function updateBarChart() {
         .duration(750)
         .call(yAxisBar);
 
-    /* Update Bar Chart Text */ 
+    /* Update Bar Chart Text */
     svg.selectAll(".bartext")
     	.remove();
 
@@ -315,7 +316,7 @@ function updateBarChart() {
 function hoverPlot(bar){
 	var graphScatter = d3.select("#scatter-plot");
 	var graphBar = d3.select("#bar-chart");
-	
+
 	// If bar already clicked, do nothing
 	if(clicked[bar.key]){
 		return;
@@ -360,7 +361,7 @@ function hoverPlot(bar){
 		.style("opacity", 1);
 	}
 }
-		
+
 
 // Link logic when bar is brushed
 function filterPlot(bar, index){
@@ -372,17 +373,17 @@ function filterPlot(bar, index){
 		for(key in clicked){
 			clicked[key]=0;
 		}
-	
+
 		graphScatter.selectAll(".dot")
 		.transition()
 		.delay(100)
 		.duration(400)
-		.style("opacity", 1);	
-		
+		.style("opacity", 1);
+
 		graphBar.selectAll(".bar")
 		.style("stroke-width", 0)
 		.style("fill", function(d) { return color(cValue(d)); })
-		  .text(function(d) { return (d.key); });	
+		  .text(function(d) { return (d.key); });
 	} else {
 		// console.log("Bar not clicked");
 		// Fade out unclicked categories

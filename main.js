@@ -1,3 +1,4 @@
+// Completely written from scratch
 $(function() {
 
 	// Fill Color

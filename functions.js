@@ -1,3 +1,4 @@
+// Functions file written completely from scratch
 /* Super Global Variables */
 MIN_RANK = 1;
 MAX_RANK = 1000;
@@ -161,7 +162,7 @@ function populateList() {
 
   // clear old list
   $("#data-table").html('');
-  
+
   data.forEach(function(d) {
     $("#data-table")
       .append('<tr>'
@@ -184,7 +185,7 @@ function populateListForOneCategory(category_name) {
 
   // clear old list
   $("#data-table").html('');
-  
+
   data.forEach(function(d) {
     $("#data-table")
       .append('<tr>'

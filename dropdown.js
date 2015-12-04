@@ -1,7 +1,8 @@
+/* written completely from scratch */
 /* Super Global Variables */
 SUPER_GLOBAL_CATEGORIES_TO_DISPLAY = [];
 
-/* Global Variables */ 
+/* Global Variables */
 var global_isCATEGORY_LI_LOADED = false;
 
 function dropdown() {
@@ -25,7 +26,7 @@ function dropdown() {
 function loadListItems() {
 
 	if (!global_isCATEGORY_LI_LOADED) {
-	
+
 		// Read in Categories from csv
 		SUPER_GLOBAL_CATEGORY_NAMES.forEach(function(name) {
 

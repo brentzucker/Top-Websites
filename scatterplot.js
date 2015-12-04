@@ -1,3 +1,4 @@
+//General barchart template was followed but heavily modified with personalizations
 var GLOBAL_DATA_SCATTERPLOT = [];
 
 function scatterPlot() {
